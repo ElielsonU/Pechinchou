@@ -2,6 +2,7 @@ import { StyledMenu, MenuNav, MenuShadow } from "./styled";
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import ThemeChanger from "../../ThemeChanger";
 
 interface MenuProps {
     toggleTheme: Function;
@@ -28,11 +29,7 @@ const Menu: React.FC<MenuProps> = ({
 
                 <hr />
                 
-                <label className="DarkMode" >
-                    <Image src="https://pechinchou.com.br/_next/static/media/IconTheme.d7f5eb15.svg" alt="sun" width={16} height={16}/>
-                    Modo noturno
-                    <input type="checkbox" onChange={() => toggleTheme()}/>
-                </label>
+                <ThemeChanger toggleTheme={toggleTheme}/>
 
                 <Link href="#"><img src="https://pechinchou.com.br/_next/static/media/IconStarWhite.1f0e0720.svg" alt="star" />Destaques</Link>
                 

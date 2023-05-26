@@ -8,7 +8,7 @@ const StyledNav = styled.nav`
         filter: brightness(${({theme}) => theme.filter.brightness});
     }
 
-    @media (max-width: ${({theme}) => theme.breakpoints.desktop}px) {
+    @media (max-width: ${({theme}) => theme.breakpoints.tv}px) {
         display: none;
     }
 `

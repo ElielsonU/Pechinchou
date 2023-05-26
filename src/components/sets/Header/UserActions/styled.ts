@@ -1,14 +1,11 @@
 import styled from "styled-components";
 
-const StyledUserActions = styled.div`
+const StyledUserActions = styled.section`
     display: flex;
     gap: 10px;
 
-    @media (max-width: ${({theme}) => theme.breakpoints.desktop}px) {
-        flex-grow: 1;
-    }
-
     @media (max-width: ${({theme}) => theme.breakpoints.tablet}px) {
+        flex-grow: 1;
         justify-content: end;
     }
 `
@@ -325,6 +322,10 @@ const ProfileButton = styled.button`
         @media (max-width: ${({theme}) => theme.breakpoints.tablet}px) {
             display: none;
         }
+    }
+
+    @media (max-width: ${({theme}) => theme.breakpoints.tablet}px) {
+            padding: 0;
     }
 `
 

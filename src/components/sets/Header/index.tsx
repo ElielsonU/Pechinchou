@@ -8,38 +8,45 @@ import { useState } from "react";
 
 const StyledHeader = styled.header`
     position: fixed;
+    display: flex;
+    justify-content: center;
     top: 0;
     width: 100%;
+    background-color: ${({theme}) => theme.colors.c1};
     padding: 0 27px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 20px;
-    height: 60px;
     outline: 1px solid ${({theme}) => theme.colors.c3};
     z-index: 1000;
 
-    img {
-        vertical-align: text-bottom;
-    }
-
-    > section:first-of-type {
+    > section {
         display: flex;
-        gap: 50px;
         align-items: center;
+        justify-content: space-between;
+        gap: 20px;
+        width: 100%;
+        max-width: 1336px;
+        height: 60px;
 
-        @media (max-width: ${({theme}) => theme.breakpoints.desktop}px) {
-            gap: 15px;
+        img {
+            vertical-align: text-bottom;
+        }
+    
+        > section:first-of-type {
+            display: flex;
+            gap: 50px;
+            align-items: center;
+    
+            @media (max-width: ${({theme}) => theme.breakpoints.tv}px) {
+                gap: 15px;
+            }
+        }
+    
+        a:hover {
+            opacity: 0.7;
         }
     }
+    
+    
 
-    a:hover {
-        opacity: 0.7;
-    }
-
-    @media (max-width: ${({theme}) => theme.breakpoints.desktop}px) {
-        padding: 0 15px;
-    }
 `
 
 interface HiddenProps {
@@ -55,7 +62,7 @@ const BackgroundShadow = styled.div<HiddenProps>`
     z-index: 0;
     transition: 500ms ease opacity;
     opacity: ${props => props.show?"1":"0"};
-    display: ${props => props.show?"flex":"contents"};
+    display: ${props => props.show?"block":"none"};
     bottom: 0;
     right: 0;
 `
@@ -72,7 +79,6 @@ const OutSpace = styled.div<HiddenProps>`
 
 const FakeSpace = styled.div`
     height: 60px;
-    background-color: ${({theme}) => theme.colors.c1};
     width: 100%;
 `
 
@@ -98,16 +104,18 @@ const Header: React.FC<HeaderProps> = ({
         <>
             <FakeSpace/>
             <StyledHeader>
-                <BackgroundShadow show={isFocusing}/>
-                <OutSpace show={isFocusing} onClick={handler}/>
                 <section>
-                    <Menu toggleTheme={toggleTheme}/>
-                    <Link href={"/"}>
-                        <Image src={theme.images.logo} alt="pechinchou icon" width={132} height={32}/>
-                    </Link>
-                    <Nav isFocusing={isFocusing} changeFocus={changeFocus}/>
+                    <BackgroundShadow show={isFocusing}/>
+                    <OutSpace show={isFocusing} onClick={handler}/>
+                    <section>
+                        <Menu toggleTheme={toggleTheme}/>
+                        <Link href={"/"}>
+                            <Image src={theme.images.logo} alt="pechinchou icon" width={132} height={32}/>
+                        </Link>
+                        <Nav isFocusing={isFocusing} changeFocus={changeFocus}/>
+                    </section>
+                    <UserActions isFocusing={isFocusing} changeFocus={changeFocus}/>
                 </section>
-                <UserActions isFocusing={isFocusing} changeFocus={changeFocus}/>
             </StyledHeader>
         </>
     )

@@ -6,18 +6,16 @@ interface StyledLinkProps {
     font_size?: string;
 }
 
-const StyledPLink = styled.span<StyledLinkProps>`
-    color: ${({color}) => color};
+const StyledPLink = styled.a<StyledLinkProps>`
+    color: ${({color}) => color?color:"inherit"};
     display: inline;
-    > a {
-        vertical-align: middle;
-        font-weight: 500;
-        color: inherit;
-        text-decoration: none;
-        font-size: ${({font_size}) => font_size};
-        :hover {
-            opacity: 0.7;
-        }
+    vertical-align: middle;
+    font-weight: 500;
+    text-decoration: none;
+    font-size: ${({font_size}) => font_size};
+    transition: opacity 200ms ease-in;
+    :hover {
+        opacity: 0.7;
     }
 `
 
@@ -34,10 +32,8 @@ const PLink: React.FC<PLinkProps> = ({
     children
 }) => {
     return (
-        <StyledPLink color={color} font_size={font_size}>
-            <Link href={href} passHref>
-                {children}
-            </Link>
+        <StyledPLink color={color} font_size={font_size} href={href}>
+            {children}
         </StyledPLink>
     )
 }

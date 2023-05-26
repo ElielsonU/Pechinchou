@@ -14,18 +14,23 @@ const theme = {
         c10: "#d0daf5",
         c11: "#dee0e0",
         c12: "#ffebef",
+        c13: "#dee0e0",
+        c14: "#db2831",
+        c15: "#fff5f5",
+        c16: "#fff5f5",
     },
     font_sizes: {
-        largest: "2.6rem",
-        large: "2.2rem",
+        largest: "2rem",
+        large: "1.6rem",
         medium: "1.2rem",
         small: "1rem",
         tiny: "0.8rem"
     },
     breakpoints: {
-        desktop: 1115,
+        desktop: 1336,
+        tv: 1115,
         tablet: 768,
-        mobile: 500, 
+        mobile: 550, 
     },
     images: {
         logo: "/icons/header/logo.svg"
@@ -33,7 +38,8 @@ const theme = {
     filter: {
         brightness: "",
         opacity: "100%",
-        invert: "0"
+        invert: "0",
+        whiteto: "brightness(.2) invert(.5) sepia(5) hue-rotate(-40deg) saturate(800%)"
     }
 }
 
@@ -51,6 +57,10 @@ const darkTheme = {
         c10: "#5f7fdb",
         c11: "#707274",
         c12: "#521215",
+        c13: "#494c4e",
+        c14: "#ffffff",
+        c15: "#db2831",
+        c16: "#521215",
     },
     font_sizes: {
         largest: "2rem",
@@ -60,9 +70,10 @@ const darkTheme = {
         tiny: "0.8rem"
     },
     breakpoints: {
-        desktop: 1115,
+        desktop: 1336,
+        tv: 1115,
         tablet: 768,
-        mobile: 500, 
+        mobile: 550, 
     },
     images: {
         logo: "/icons/header/dark-logo.svg"
@@ -70,7 +81,8 @@ const darkTheme = {
     filter: {
         brightness: "100",
         opacity: "40%",
-        invert: "1"
+        invert: "1",
+        whiteto: "none",
     }
 }
 

@@ -15,7 +15,7 @@ const StyledMenu = styled.section`
     background-size: 18px;
     filter: brightness(${({theme}) => theme.filter.brightness});
 
-    @media (max-width: ${({theme}) => theme.breakpoints.desktop}px) {
+    @media (max-width: ${({theme}) => theme.breakpoints.tv}px) {
         display: block;
     }
 `
@@ -128,8 +128,6 @@ const MenuNav = styled.nav<HiddenProps>`
     label:has(input:checked) + ul {
         display: flex;
     }
-    
-    
     
     ul {
         font-size: ${({theme}) => theme.font_sizes.small};

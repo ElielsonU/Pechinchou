@@ -1,5 +1,11 @@
 import PLink from "./PLink"
+import Main from "./Main"
+import SliderButton from "./SliderButton"
+import Generic from "./Generic"
 
 export {
-    PLink
+    PLink,
+    Main,
+    SliderButton,
+    Generic,
 }

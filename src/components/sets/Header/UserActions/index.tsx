@@ -155,7 +155,7 @@ const UserActions: React.FC<UserActionsProps> = ({
             </RoundedButton>
 
             <ProfileButton value={Number(profileFocusing)} onClick={changeProfileFocus} >
-                    <Image src="https://pechinchou.com.br/_next/static/media/defaultProductImage.6a1e22d2.svg" alt="UserIcon" width={31} height={31}/>
+                    <Image src="https://pechinchou.com.br/_next/static/media/defaultProductImage.6a1e22d2.svg" alt="UserIcon" width={33} height={33}/>
                     <div>
                         <strong>Olá, {"{User}"}</strong>
                         <span>Meu perfil</span>
