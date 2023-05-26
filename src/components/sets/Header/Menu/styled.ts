@@ -101,9 +101,6 @@ const MenuNav = styled.nav<HiddenProps>`
         position: relative;
         cursor: pointer;
         
-        span {
-        }
-
         input {
             cursor: pointer;
             position: absolute;
@@ -112,8 +109,8 @@ const MenuNav = styled.nav<HiddenProps>`
             appearance: none;
             margin: 0;
             width: 10px;
-            border-bottom: 2px dashed ${({theme}) => theme.colors.c4};
-            border-right: 2px dashed ${({theme}) => theme.colors.c4};
+            border-bottom: 2px solid ${({theme}) => theme.colors.c4};
+            border-right: 2px solid ${({theme}) => theme.colors.c4};
             transition: rotate 100ms ease;
             rotate: -45deg;
             height: 10px;

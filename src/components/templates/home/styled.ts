@@ -118,7 +118,7 @@ const FiltersGallery = styled.div`
     z-index: 1;
     background-color: ${({theme}) => theme.colors.c2};
     position: sticky;
-    top: 61px;
+    top: 60px;
 `
 
 const FiltersInfo = styled.span`

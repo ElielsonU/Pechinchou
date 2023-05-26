@@ -187,7 +187,7 @@ const HomePage:React.FC<ToggleThemeProps> = ({
                 <InfinityScroll />
             </section>
 
-            <Aside />
+            <Aside toggleTheme={toggleTheme}/>
         </Main>
     )
 } 
