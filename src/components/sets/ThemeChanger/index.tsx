@@ -1,15 +1,17 @@
-import React from "react";
-import styled from "styled-components";
+import React, { useState } from "react";
+import styled, { useTheme } from "styled-components";
 import Image from "next/image";
 
 const StyledThemeChanger = styled.label`
     gap: 10px;
     display: flex;
+    cursor: pointer;
+    
         > input {
+            cursor: pointer;
             margin-left: auto;
             margin-right: 0;
             appearance: none;
-            cursor: pointer;
             width: 30px;
             height: 15px;
             border-radius: 8px;
@@ -53,12 +55,13 @@ interface ThemeChangerProps {
 const ThemeChanger: React.FC<ThemeChangerProps> = ({
     toggleTheme
 }) => {
+    const theme = useTheme()
 
     return (
         <StyledThemeChanger>
             <Image src="https://pechinchou.com.br/_next/static/media/IconTheme.d7f5eb15.svg" alt="sun" width={16} height={16}/>
             Modo noturno
-            <input type="checkbox" onChange={() => toggleTheme()}/>
+            <input type="checkbox" onChange={() => toggleTheme()} checked={theme.name == "dark"}/>
         </StyledThemeChanger>
     )
 }

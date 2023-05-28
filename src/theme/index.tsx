@@ -1,6 +1,7 @@
 import "styled-components"
 
 const theme = {  
+    name: "white",
     colors: {
         c1: "#ffffff",
         c2: "#f0f2f5",
@@ -44,6 +45,7 @@ const theme = {
 }
 
 const darkTheme = {
+    name: "dark",
     colors: {
         c1: "#272a2c",
         c2: "#1d1f20",

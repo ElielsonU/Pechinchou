@@ -133,7 +133,7 @@ const UserActions: React.FC<UserActionsProps> = ({
                 </button>
 
                 <Notifications show={notificationFocusing}>
-                    <label>Geral <input type="radio" name="valor" autoFocus/></label>
+                    <label>Geral <input type="radio" name="valor" defaultChecked/></label>
 
                     <label>Conversas <input type="radio" name="valor"/></label>
 
