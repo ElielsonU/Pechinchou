@@ -310,6 +310,7 @@ const StyledInfinityScroll = styled.div`
     grid-gap: 16px;
         
     @media (max-width: ${({theme}) => theme.breakpoints.tablet}px) {
+        gap: 8px;
         grid-template-columns: repeat(3,calc(100% / 3 - 9px));
     }
 
