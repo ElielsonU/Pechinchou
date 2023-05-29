@@ -3,7 +3,10 @@ import styled from "styled-components";
 
 const StyledNav = styled.nav`
     display: flex;
+    align-items: flex-end;
+    vertical-align: text-bottom;
     gap: 20px;
+
     img {
         filter: brightness(${({theme}) => theme.filter.brightness});
     }

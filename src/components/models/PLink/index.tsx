@@ -9,7 +9,6 @@ interface StyledLinkProps {
 const StyledPLink = styled.a<StyledLinkProps>`
     color: ${({color}) => color?color:"inherit"};
     display: inline;
-    vertical-align: middle;
     font-weight: 500;
     text-decoration: none;
     font-size: ${({font_size}) => font_size};
@@ -23,16 +22,18 @@ interface PLinkProps extends PropsWithChildren{
     href: string;
     color?: string;
     font_size?: string;
+    className?: string;
 }
 
 const PLink: React.FC<PLinkProps> = ({
     href,
     color,
     font_size,
+    className,
     children
 }) => {
     return (
-        <StyledPLink color={color} font_size={font_size} href={href}>
+        <StyledPLink color={color} font_size={font_size} href={href} className={className}>
             {children}
         </StyledPLink>
     )

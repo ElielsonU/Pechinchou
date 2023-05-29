@@ -4,6 +4,7 @@ import { Generic } from "@/components/models";
 const StyledFooter = styled.footer`
     height: max-content;
     max-width: 100%;
+    padding-top: 20px;
     width: 100%;
     bottom: 0;
     left: 0;
@@ -15,7 +16,6 @@ const StyledFooter = styled.footer`
     -webkit-box-align: center;
     align-items: center;
     z-index: 13;
-    display: none;
     position: fixed;
 
     > .Header {
@@ -32,11 +32,17 @@ const StyledFooter = styled.footer`
     }
 
     > .Welcome {
-        width: 1216px;
         display: flex;
+        justify-content: center;
         -webkit-box-pack: justify;
         gap: 200px;
     }
+`
+
+const WelcomeText = styled.div`
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
 `
 
 const Footer:React.FC = () => {
@@ -63,7 +69,9 @@ const Footer:React.FC = () => {
             </div>
 
             <div className="Welcome">
-
+                <WelcomeText>
+                    <Generic>👋🏼 Bem vindo ao Pechinchou!</Generic>
+                </WelcomeText>
             </div>
 
         </StyledFooter>
