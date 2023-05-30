@@ -1,10 +1,15 @@
-const jsonServer = require("json-server")
+const server = require("json-server")
 
-const server = jsonServer.create()
-server.use(jsonServer.defaults())
+const app = server.create()
 
+app.use(server.defaults())
+app.use(server.bodyParser)
+
+
+
+app.use(server.router('./db.json'))
 const port = 8000
-server.listen(port, () => {
+app.listen(port, () => {
     console.log(`Server listening on port: ${port}`)
 })
 

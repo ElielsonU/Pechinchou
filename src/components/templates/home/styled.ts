@@ -212,7 +212,7 @@ const FiltersButton = styled.button<FiltersButtonProps>`
 const FiltersOptions = styled.div<FiltersButtonProps>`
     position: absolute;
     top: 56px;
-    right: 16px;
+    right: 8px;
     padding: 16px;
     display: ${(props) => props.focusing? "grid" : "none"};
     grid-template-columns: 1fr 1fr 1fr;
@@ -349,6 +349,12 @@ const StyledPromoCard = styled.section`
     border-radius: 8px;
     flex-direction: column;
     display: flex;
+
+    .Name {
+        display: block;
+        max-height: 36px;
+        overflow: hidden;
+    }
 
     .ProductImage {
         width: calc(100%);

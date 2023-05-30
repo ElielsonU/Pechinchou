@@ -1,4 +1,5 @@
-import React, { useState } from "react"
+import React, { useEffect, useState } from "react"
+import axios from "axios"
 import {
     StyledFilters, 
     FiltersGallery, 
@@ -103,30 +104,56 @@ const Filters:React.FC = () => {
     )
 }
 
-const PromoCard: React.FC = () => {
+interface PromoCardProps {
+    sale: {
+        name: string;
+        description: string;
+        value: number;
+        sale: number;
+        likes: number;
+        img: string;
+        posted: string;
+        store: {
+            img: string;
+            name: string;
+        },
+        comments: Array<any>;
+    }
+}
+
+const PromoCard: React.FC<PromoCardProps> = ({
+    sale
+}) => {
     const theme = useTheme()
+    const [liked, setLiked] = useState(0)
+
+    const url = sale.name.replaceAll(" ", "-").replaceAll(".", "").replaceAll(",", "").replace("---", "-").replace("--", "-").toLowerCase()
+
+    const changeLiked = () => {
+        liked?setLiked(0):setLiked(1)
+    }
 
     return (
         <StyledPromoCard>
             <a href="#" className="ProductImage">
-                <img src="/imgs/main/product/enxaguante-bucal.webp" alt="enxaguante bucal" />
-                <img src="https://pechinchou.com.br/_next/image?url=https%3A%2F%2Fadmin.pechinchou.com.br%2Fmedia%2Fimg%2Fstore%2F03%2F03%2FCasas_bahia.png.jpg&w=1080&q=75" alt="casas bahia" />
+                <img src={sale.img} alt={sale.name} />
+                <img src={sale.store.img} alt={sale.store.name} />
             </a>
             
-            <Generic font_size={theme.font_sizes.tiny}>Há 11H</Generic>
+            <Generic font_size={theme.font_sizes.tiny}>{sale.posted}</Generic>
 
-            <Generic as="h3">Enxaguante Bucal Colgate</Generic>
+            <Generic as="h3" className="Name">{sale.name}</Generic>
         
             <Generic className="Coupon"></Generic>
 
             <Generic 
             as="s" 
             font_size={theme.font_sizes.tiny}
-            color="#a6aaad">R$ 13,99</Generic>
+            color="#a6aaad">R$ {sale.value.toFixed(2)}</Generic>
 
             <a href="#" className="Price">
                 <Generic font_size={theme.font_sizes.medium}>R$ </Generic>
-                21,51
+                {sale.sale.toFixed(2)}
                 <Generic className="GoTo">
                     <img src="https://pechinchou.com.br/_next/static/media/IconGoToPromoRedDark.4fd14a75.svg" alt="go to" />
                 </Generic>
@@ -134,13 +161,13 @@ const PromoCard: React.FC = () => {
 
             <div className="CardFooter">
                 <PLink href="#" font_size={theme.font_sizes.tiny}>
-                    <img src="https://pechinchou.com.br/_next/static/media/IconComment.3f012400.svg" alt="" />
+                    <img src="https://pechinchou.com.br/_next/static/media/IconComment.3f012400.svg" alt="comment" />
                     Dúvidas?
                 </PLink>
 
                 <label className="LikeButton">
-                    <input type="checkbox"/>
-                    11
+                    <input type="checkbox" onChange={() => {changeLiked()}}/>
+                    {sale.likes + liked}
                 </label>
             </div>
         </StyledPromoCard>
@@ -148,30 +175,35 @@ const PromoCard: React.FC = () => {
 }
 
 const InfinityScroll:React.FC = () => {
+    const [sales, setSales] = useState([{
+        name: "",
+        description: "",
+        value: 0,
+        sale: 0,
+        likes: 0,
+        img: "",
+        posted: "",
+        store: {
+            img: "",
+            name: ""
+        },
+        comments: []
+    }])
+
+
+
+    useEffect(() => {
+        (async function getSales () {
+            const res = await axios.get('http://localhost:8000/product')
+            setSales(res.data)
+        })()
+    }, [])
 
     return (
         <StyledInfinityScroll>
-            <PromoCard />
-            <PromoCard />
-            <PromoCard />
-            <PromoCard />
-            <PromoCard />
-            <PromoCard />
-            <PromoCard />
-            <PromoCard />
-            <PromoCard />
-            <PromoCard />
-            <PromoCard />
-            <PromoCard />
-            <PromoCard />
-            <PromoCard />
-            <PromoCard />
-            <PromoCard />
-            <PromoCard />
-            <PromoCard />
-            <PromoCard />
-            <PromoCard />
-            <PromoCard />
+            {sales.map((item, index) => {
+                return <PromoCard sale={item} key={index}/>
+            })}
         </StyledInfinityScroll>
     )
 }
