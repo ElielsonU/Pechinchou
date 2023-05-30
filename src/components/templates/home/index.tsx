@@ -149,11 +149,11 @@ const PromoCard: React.FC<PromoCardProps> = ({
             <Generic 
             as="s" 
             font_size={theme.font_sizes.tiny}
-            color="#a6aaad">R$ {sale.value.toFixed(2)}</Generic>
+            color="#a6aaad">R$ {sale.value.toFixed(2).replace(".", ",")}</Generic>
 
             <a href="#" className="Price">
                 <Generic font_size={theme.font_sizes.medium}>R$ </Generic>
-                {sale.sale.toFixed(2)}
+                {sale.sale.toFixed(2).replace(".", ",")}
                 <Generic className="GoTo">
                     <img src="https://pechinchou.com.br/_next/static/media/IconGoToPromoRedDark.4fd14a75.svg" alt="go to" />
                 </Generic>
