@@ -265,6 +265,10 @@ const ShowFooter = styled.button`
         border-bottom: 2px solid;
         border-right: 2px solid;
     }
+
+    @media (max-width: ${({theme}) => theme.breakpoints.tv}px) {
+        display: none;
+    }
 `
 
 interface AsideProps{
@@ -276,6 +280,11 @@ const Aside:React.FC<AsideProps> = ({
 }) => {
     const theme = useTheme()
     const [scrollY, setScrollY] = useState(0)
+    const [visibleFooter, setVisibleFooter] = useState(false)
+
+    const changeFooterVisiblity = () => {
+        setVisibleFooter(!visibleFooter)
+    }
 
     if (typeof document != "undefined") {
         document.addEventListener("scroll", () => {
@@ -360,11 +369,11 @@ const Aside:React.FC<AsideProps> = ({
                     </a>
                 </AdsPosts>
 
-                <ShowFooter>
+                <ShowFooter onClick={changeFooterVisiblity}>
                     exibir rodapé
                 </ShowFooter>
             </StyledAside>
-            <Footer />
+            <Footer hidden={true} visible={visibleFooter} changeVisibility={changeFooterVisiblity}/>
         </>
     )
 }
