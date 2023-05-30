@@ -1,5 +1,6 @@
 import styled, { useTheme } from "styled-components";
 import React, { useEffect } from "react";
+import dynamic from "next/dynamic";
 import Link from "next/link";
 import Image from "next/image";
 import { useState } from "react";
@@ -28,7 +29,6 @@ const Nav: React.FC<NavProps> = ({
         !isFocusing&&setShowCategories(false)
     }, [isFocusing])
 
-
     return (
         <StyledNav>
             <CategoryButton value={Number(showCategories)} onClick={CategoryHandler}>
@@ -42,7 +42,7 @@ const Nav: React.FC<NavProps> = ({
                                 <Image src={"https://pechinchou.com.br/_next/static/media/IconCategoryDropdownNew.9a67f950.svg"} alt="categories" width={15} height={15}/>
                                 <h3>Categorias</h3> 
                             </div>
-                            <Link href="https://pechinchou.com.br/categorias" target="_blank">Ver todas</Link>
+                            <Link href="#">Ver todas</Link>
                         </div>
                         <div>
                             <Image src="/imgs/header/products.webp" alt="products" width={230} height={240} className="image"/>

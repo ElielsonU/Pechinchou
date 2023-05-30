@@ -8,7 +8,6 @@ const StyledWelcome = styled.section`
     justify-content: center;
     justify-content: space-between;
     width: 1362px;
-    padding: 0 10px;
     max-width: 100%;
 `
 

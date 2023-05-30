@@ -15,7 +15,7 @@ interface FooterProps {
 const StyledFooter = styled.footer<FooterProps>`
     height: max-content;
     max-width: 100%;
-    padding: 20px 0 30px;
+    padding: 20px 40px 30px;
     width: 100%;
     bottom: 0;
     left: 0;

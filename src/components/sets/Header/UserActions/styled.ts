@@ -298,7 +298,7 @@ const ProfileButton = styled.button`
         border-width: 0 2px 2px 0;
         padding: 3px;
         border-image: initial;
-        rotate: ${props => props.value?"45deg":"225deg"};
+        rotate: ${props => props.value?"225deg":"45deg"};
         transition: rotate 300ms ease;
         @media (max-width: ${({theme}) => theme.breakpoints.tablet}px) {
             display: none;

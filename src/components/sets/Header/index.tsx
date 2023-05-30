@@ -43,10 +43,12 @@ const StyledHeader = styled.header`
         a:hover {
             opacity: 0.7;
         }
+
     }
     
-    
-
+    @media (max-width: ${({theme}) => theme.breakpoints.mobile}px) {
+        padding: 0 10px;
+    }
 `
 
 interface HiddenProps {

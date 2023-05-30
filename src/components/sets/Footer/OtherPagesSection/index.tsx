@@ -1,12 +1,11 @@
 import styled, { useTheme } from "styled-components";
 import Image from "next/image";
-import { Generic } from "@/components/models";
+import { Generic, PLink } from "@/components/models";
 
 
 const StyledOtherPagesSection = styled.section`
     display: flex;
     width: 1360px;
-    padding: 0 10px;
     max-width: 100%;
     justify-content: space-between;
 
@@ -15,7 +14,7 @@ const StyledOtherPagesSection = styled.section`
         display: flex;
         flex-direction: column;
         padding: 0;
-        gap: 10px;
+        gap: 12px;
 
         > .Title {
             margin-bottom: 5px;
@@ -68,33 +67,33 @@ const OtherPagesSection:React.FC = () => {
             <FollowUs>
                 <Generic font_size={theme.font_sizes.medium} font_weight="900" className="Title">Siga o Pechinchou</Generic>
                 <div className="Links">
-                    <a href="#">
+                    <PLink href="#">
                         <Image src="https://pechinchou.com.br/_next/static/media/IconInstagramFooter.7d2537b0.svg" alt="instagram" width={35} height={35}/>
-                    </a>
+                    </PLink>
                     
-                    <a href="#">
+                    <PLink href="#">
                         <Image src="https://pechinchou.com.br/_next/static/media/IconWhatsappFooter.87b4ee95.svg" alt="whatsapp" width={35} height={35}/>
-                    </a>
+                    </PLink>
                     
-                    <a href="#">
+                    <PLink href="#">
                         <Image src="https://pechinchou.com.br/_next/static/media/IconFacebookFooter.34697ece.svg" alt="facebook" width={35} height={35}/>
-                    </a>
+                    </PLink>
 
-                    <a href="#">
+                    <PLink href="#">
                         <Image src="https://pechinchou.com.br/_next/static/media/IconTelegramFooter.27b68c5e.svg" alt="telegram" width={35} height={35}/>
-                    </a>
+                    </PLink>
 
-                    <a href="#">
+                    <PLink href="#">
                         <Image src="https://pechinchou.com.br/_next/static/media/IconLinkedinFooter.77d1cc59.svg" alt="linkedin" width={35} height={35}/>
-                    </a>
+                    </PLink>
 
-                    <a href="#">
+                    <PLink href="#">
                         <Image src="https://pechinchou.com.br/_next/static/media/IconYoutubeFooter.2d58b478.svg" alt="youtube" width={35} height={35}/>
-                    </a>
+                    </PLink>
 
-                    <a href="#">
+                    <PLink href="#">
                         <Image src="https://pechinchou.com.br/_next/static/media/IconTwitterFooter.d294cc31.svg" alt="twitter" width={35} height={35}/>
-                    </a>
+                    </PLink>
                 </div>
             </FollowUs>
         </StyledOtherPagesSection>
