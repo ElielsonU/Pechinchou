@@ -40,7 +40,7 @@ const theme = {
         brightness: "",
         opacity: "100%",
         invert: "0",
-        whiteto: "brightness(.2) invert(.5) sepia(5) hue-rotate(-40deg) saturate(800%)"
+        whiteto: "brightness(.2) invert(.5) sepia(5) hue-rotate(-55deg) saturate(800%)"
     }
 }
 
