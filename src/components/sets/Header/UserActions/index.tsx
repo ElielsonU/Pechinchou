@@ -28,7 +28,6 @@ const UserActions: React.FC<UserActionsProps> = ({
     const [notificationFocusing, setNotificationFocusing] = useState(false)
     const [profileFocusing, setProfileFocusing] = useState(false)
     const [mobileSearchFocusing, setMobileSearchFocusing] = useState(false)
-    const theme = useTheme()
 
     useEffect(() => {
         if(!isFocusing) {
@@ -171,7 +170,6 @@ const UserActions: React.FC<UserActionsProps> = ({
                         <a href="#">Política de privacidade</a>
                         <a href="#">Termos de uso</a>
                         <a href="#" className="red">Sair</a>
-
                     </ProfileOptions>
             </ProfileButton>
         </StyledUserActions>

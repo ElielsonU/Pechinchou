@@ -13,7 +13,8 @@ import {
 import { filtersInfos } from "@/content/home"
 import { Main, SliderButton, PLink, Generic } from "@/components/models"
 import { useTheme } from "styled-components"
-import { Aside } from "@/components/sets"
+import { DynamicAside } from "@/components/sets"
+
 
 interface ToggleThemeProps {
     toggleTheme: Function
@@ -22,8 +23,9 @@ interface ToggleThemeProps {
 const Filters:React.FC = () => {
     const [choiced, setChoiced] = useState(1)
     const [showInfo, setShowInfo] = useState(false)
+    const [userToken, setUserToken] = useState({})
     const [filtersButtonFocusing, setFiltersButtonFocusing] = useState(false)
- 
+
     const changeChoiced = (event: React.ChangeEvent) => {
         setChoiced(Number((event.target as HTMLInputElement).value))
     }
@@ -190,8 +192,6 @@ const InfinityScroll:React.FC = () => {
         comments: []
     }])
 
-
-
     useEffect(() => {
         (async function getSales () {
             const res = await axios.get('http://localhost:8000/product')
@@ -208,9 +208,15 @@ const InfinityScroll:React.FC = () => {
     )
 }
 
-const HomePage:React.FC<ToggleThemeProps> = ({
-    toggleTheme
+interface HomePageProps extends ToggleThemeProps {
+    windowWidth: number;
+}
+
+const HomePage:React.FC<HomePageProps> = ({
+    toggleTheme,
+    windowWidth
 }) => {
+    const theme = useTheme()
 
     return (
         <Main>
@@ -219,7 +225,7 @@ const HomePage:React.FC<ToggleThemeProps> = ({
                 <InfinityScroll />
             </section>
 
-            <Aside toggleTheme={toggleTheme}/>
+            {windowWidth>theme.breakpoints.tv&&<DynamicAside toggleTheme={toggleTheme}/>}
         </Main>
     )
 } 

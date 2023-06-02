@@ -2,11 +2,18 @@ import Head from 'next/head'
 import { Inter } from 'next/font/google'
 import { Header } from '@/components/sets'
 import HomePage from '@/components/templates/home'
-
+import { useEffect, useState } from 'react'
 
 const inter = Inter({ subsets: ['latin'] })
 
 export default function Home(props: {toggleTheme: Function}) {
+  const [windowWidth, setWindowWidth] = useState(0)
+
+  useEffect(() => {
+    setWindowWidth(window.innerWidth)
+    window.onresize = () => setWindowWidth(window.innerWidth)
+  }, [])
+
   return (
     <>
       <Head>
@@ -15,11 +22,9 @@ export default function Home(props: {toggleTheme: Function}) {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
       
-      <Header toggleTheme={props.toggleTheme}/>
+      <Header toggleTheme={props.toggleTheme} windowWidth={windowWidth}/>
       
-      <HomePage toggleTheme={props.toggleTheme}/>
-
-      
+      <HomePage toggleTheme={props.toggleTheme} windowWidth={windowWidth}/>
     </>
   )
 }

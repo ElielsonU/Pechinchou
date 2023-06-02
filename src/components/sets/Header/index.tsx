@@ -2,9 +2,9 @@ import styled, { useTheme } from "styled-components";
 import UserActions from "./UserActions";
 import Image from "next/image";
 import Link from "next/link";
-import Menu from "./Menu";
 import Nav from "./Nav";
 import { useState } from "react";
+import dynamic from "next/dynamic";
 
 const StyledHeader = styled.header`
     position: fixed;
@@ -86,10 +86,22 @@ const FakeSpace = styled.div`
 
 interface HeaderProps {
     toggleTheme: Function;
+    windowWidth: number;
 }
 
+const DynamicMenu = dynamic(() => import("../Header/Menu"), {
+    ssr: false,
+    loading: () => <span>Loading...</span>,
+})
+
+const DynamicNav = dynamic(() => import("../Header/Nav"), {
+    ssr: false,
+    loading: () => <span>Loading...</span>,
+})
+
 const Header: React.FC<HeaderProps> = ({
-    toggleTheme
+    toggleTheme,
+    windowWidth
 }) => {
     const theme = useTheme()
     const [isFocusing, setIsFocusing] = useState(false)
@@ -98,7 +110,7 @@ const Header: React.FC<HeaderProps> = ({
         setIsFocusing(!isFocusing)
     }
 
-    const handler = () => {
+    const outspaceClickHandler = () => {
         changeFocus()
     }
 
@@ -108,13 +120,13 @@ const Header: React.FC<HeaderProps> = ({
             <StyledHeader>
                 <section>
                     <BackgroundShadow show={isFocusing}/>
-                    <OutSpace show={isFocusing} onClick={handler}/>
+                    <OutSpace show={isFocusing} onClick={outspaceClickHandler}/>
                     <section>
-                        <Menu toggleTheme={toggleTheme}/>
+                        {windowWidth<=theme.breakpoints.tv&&windowWidth>0?<DynamicMenu toggleTheme={toggleTheme}/>:<></>}
                         <Link href={"/"}>
                             <Image src={theme.images.logo} alt="pechinchou icon" width={132} height={32}/>
                         </Link>
-                        <Nav isFocusing={isFocusing} changeFocus={changeFocus}/>
+                        {windowWidth>theme.breakpoints.tv&&<DynamicNav isFocusing={isFocusing} changeFocus={changeFocus}/>}
                     </section>
                     <UserActions isFocusing={isFocusing} changeFocus={changeFocus}/>
                 </section>

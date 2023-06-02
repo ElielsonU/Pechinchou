@@ -1,5 +1,5 @@
 import { StyledMenu, MenuNav, MenuShadow } from "./styled";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import ThemeChanger from "../../ThemeChanger";
@@ -18,7 +18,7 @@ const Menu: React.FC<MenuProps> = ({
     }
 
     return (
-        <>
+        <div>
             <StyledMenu onClick={changeMenuFocus}/>
             <MenuNav show={isMenuFocusing}>
                 <Image src="https://pechinchou.com.br/_next/static/media/IconCloseDrawerMenu.bfaf4948.svg" alt="cross" width={14} height={14} className="Cross" onClick={changeMenuFocus}/>
@@ -164,7 +164,7 @@ const Menu: React.FC<MenuProps> = ({
                 <Link href="#" className="Red">Sair</Link>
             </MenuNav>
             <MenuShadow show={isMenuFocusing} onClick={changeMenuFocus}/>
-        </>
+        </div>
     )
 }
 

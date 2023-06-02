@@ -1,9 +1,14 @@
 import Header from "./Header";
-import Aside from "./Aside";
 import ThemeChanger from "./ThemeChanger";
+import dynamic from "next/dynamic";
+
+const DynamicAside = dynamic(() => import("./Aside"), {
+    ssr: false,
+    loading: () => <span>loading...</span>
+})
 
 export {
     Header,
-    Aside,
+    DynamicAside,
     ThemeChanger
 }

@@ -13,6 +13,8 @@ const GlobalStyle = createGlobalStyle<GlobalStyleProps>`
     * {
         box-sizing: border-box;
         font-family: 'DM Sans', sans-serif;
+        border: 0;
+        background-color: transparent;
     }
 
     *:focus {
