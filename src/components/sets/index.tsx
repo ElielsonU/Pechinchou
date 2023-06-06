@@ -1,6 +1,7 @@
 import Header from "./Header";
 import ThemeChanger from "./ThemeChanger";
 import dynamic from "next/dynamic";
+import Footer from "./Footer";
 
 const DynamicAside = dynamic(() => import("./Aside"), {
     ssr: false,
@@ -10,5 +11,6 @@ const DynamicAside = dynamic(() => import("./Aside"), {
 export {
     Header,
     DynamicAside,
-    ThemeChanger
+    ThemeChanger,
+    Footer
 }

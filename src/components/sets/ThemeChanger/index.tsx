@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styled, { useTheme } from "styled-components";
 import Image from "next/image";
 
@@ -55,13 +55,32 @@ interface ThemeChangerProps {
 const ThemeChanger: React.FC<ThemeChangerProps> = ({
     toggleTheme
 }) => {
-    const theme = useTheme()
 
+    // false == white | true  == dark
+    const theme = useTheme()
+    const [usedTheme, setUsedTheme] = useState(false)
+
+    useEffect(() => {
+        let savedTheme = !!parseInt(`${Number(localStorage.getItem("theme"))}`||"0")
+
+        setUsedTheme(savedTheme)
+
+        if (savedTheme && theme.name != "dark") {
+            toggleTheme()
+        }
+    }, [])
+
+    const changeUsedTheme = () => {
+        toggleTheme()
+        localStorage.setItem("theme", `${Number(!usedTheme)}`)
+        setUsedTheme(!usedTheme)
+    }
+    
     return (
         <StyledThemeChanger>
             <Image src="https://pechinchou.com.br/_next/static/media/IconTheme.d7f5eb15.svg" alt="sun" width={16} height={16}/>
             Modo noturno
-            <input type="checkbox" onChange={() => toggleTheme()} checked={theme.name == "dark"}/>
+            <input type="checkbox" onChange={changeUsedTheme} checked={usedTheme}/>
         </StyledThemeChanger>
     )
 }

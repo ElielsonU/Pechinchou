@@ -8,6 +8,7 @@ const inter = Inter({ subsets: ['latin'] })
 
 export default function Home(props: {toggleTheme: Function}) {
   const [windowWidth, setWindowWidth] = useState(0)
+  const [user, setUser] = useState(0)        
 
   useEffect(() => {
     setWindowWidth(window.innerWidth)
