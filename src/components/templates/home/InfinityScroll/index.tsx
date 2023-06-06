@@ -1,23 +1,23 @@
 import styled from "styled-components";
 import { useState, useEffect } from "react";
 import PromoCard from "./PromoCard";
+import ScrollLoader from "./ScrollLoader";
 import { getSales } from "@/apiConnection";
 
 const StyledInfinityScroll = styled.div`
     display: grid;
-    overflow: hidden !important;
-    grid-template-columns: repeat(4, calc(25% - 12px));
-    grid-gap: 16px;
+    grid-template-columns: repeat(4, calc(25% - 8px));
+    justify-content: space-between;
+    row-gap: 13px;
+    position: relative;
         
     @media (max-width: ${({theme}) => theme.breakpoints.tablet}px) {
-        gap: 8px;
-        grid-template-columns: repeat(3,calc(100% / 3 - 9px));
+        grid-template-columns: repeat(3,calc(100% / 3 - 4px));
     }
 
     @media (max-width: ${({theme}) => theme.breakpoints.mobile}px) {
-        display: grid;
-        grid-template-columns: calc(50% - 4px) calc(50% - 4px);
-        overflow: hidden;
+        width: 100%;
+        grid-template-columns: repeat(2, calc(50% - 4px));
     }
 `
 
@@ -45,12 +45,14 @@ const InfinityScroll:React.FC<InfinityScrollProps> = ({
     }])
     
     const [page, setPage] = useState(1)
+    const [loading, setLoading] = useState(true)
 
     useEffect(() => {
         (async function () {
             const responseSales = await getSales(page)
             setSales(responseSales)
             setPage(page + 1)
+            setLoading(false)
         })()
     }, [])
 
@@ -59,9 +61,11 @@ const InfinityScroll:React.FC<InfinityScrollProps> = ({
         const actualYScroll = scrollY + window.innerHeight
 
         actualYScroll >= offsetHeight&&(async function () {
+            setLoading(true)
             const responseSales = await getSales(page)
             setPage(page + 1)
             sales.push(...responseSales)
+            setLoading(false)
         })()
     }, [scrollY])
 
@@ -70,6 +74,7 @@ const InfinityScroll:React.FC<InfinityScrollProps> = ({
             {sales.map((item, index) => {
                 return <PromoCard sale={item} key={index} alreadyLiked={0}/>
             })}
+            {loading&&<ScrollLoader />}
         </StyledInfinityScroll>
     )
 }

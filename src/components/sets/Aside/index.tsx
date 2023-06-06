@@ -8,7 +8,7 @@ import AdsPosts from "./AdsPosts"
 
 const StyledAside = styled.aside`
     color: ${({theme}) => theme.colors.c6};
-    width: 320px;
+    width: 300px;
     position: relative;
     display: flex;
     flex-direction: column;

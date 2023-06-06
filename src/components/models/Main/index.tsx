@@ -13,7 +13,7 @@ const Main = styled.main`
 
     > section {
         color: ${({theme}) => theme.colors.c6};
-        width: calc(100% - 350px);
+        width: calc(100% - 315px);
     }
 
     @media (max-width: ${({theme}) => theme.breakpoints.tv}px) {

@@ -25,7 +25,6 @@ const StyledAsideScroll = styled.section`
         
         > section {
             padding: 20px;
-            width: 320px;
             margin: 0;
             background-color: ${({theme}) => theme.colors.c1};
             border-radius: 8px;
