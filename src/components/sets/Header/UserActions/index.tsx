@@ -12,22 +12,30 @@ import { moresearched } from "@/content";
 import React, { useState, useEffect } from "react"
 import Image from "next/image";
 import { PLink } from "@/components/models";
-import { useTheme } from "styled-components";
+
+type User = {
+    id: number;
+    username: string;
+}
 
 interface UserActionsProps {
     isFocusing: boolean;
     changeFocus: Function;
+    user: User;
 }
 
 const UserActions: React.FC<UserActionsProps> = ({
     isFocusing,
-    changeFocus
+    changeFocus,
+    user
 }) => {
     const [search, setSearch] = useState("")
     const [searchBarFocusing, setSearchBarFocusing] = useState(false)
     const [notificationFocusing, setNotificationFocusing] = useState(false)
     const [profileFocusing, setProfileFocusing] = useState(false)
     const [mobileSearchFocusing, setMobileSearchFocusing] = useState(false)
+    const firstName = user.username.split(" ")[0].split("-")[0].split(",")[0]
+    const at = user.username.toLowerCase().replace(" ", "")
 
     useEffect(() => {
         if(!isFocusing) {
@@ -156,14 +164,14 @@ const UserActions: React.FC<UserActionsProps> = ({
             <ProfileButton value={Number(profileFocusing)} onClick={changeProfileFocus} >
                     <Image src="https://pechinchou.com.br/_next/static/media/defaultProductImage.6a1e22d2.svg" alt="UserIcon" width={33} height={33}/>
                     <div>
-                        <strong>Olá, {"{User}"}</strong>
+                        <strong>Olá, {firstName}</strong>
                         <span>Meu perfil</span>
                     </div>
                     <ProfileOptions show={profileFocusing}>
                         <div>
                             <Image src="https://pechinchou.com.br/_next/static/media/defaultProductImage.6a1e22d2.svg" alt="UserIcon" width={35} height={35}/>
-                            <h3>{"{User}"}</h3>
-                            <a href="#">@userhashtag</a>
+                            <h3>{user.username}</h3>
+                            <a href="#">@{at}</a>
                         </div>
                         <a href="#"> <Image src="/icons/global/gear.svg" alt="UserIcon" width={20} height={20}/> Configurações</a>
                         <a href="#">Fale conosco</a>

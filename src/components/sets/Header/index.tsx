@@ -84,9 +84,15 @@ const FakeSpace = styled.div`
     width: 100%;
 `
 
+type User = {
+    id: number;
+    username: string;
+}
+
 interface HeaderProps {
     toggleTheme: Function;
     windowWidth: number;
+    user: User;
 }
 
 const DynamicMenu = dynamic(() => import("../Header/Menu"), {
@@ -101,7 +107,8 @@ const DynamicNav = dynamic(() => import("../Header/Nav"), {
 
 const Header: React.FC<HeaderProps> = ({
     toggleTheme,
-    windowWidth
+    windowWidth,
+    user
 }) => {
     const theme = useTheme()
     const [isFocusing, setIsFocusing] = useState(false)
@@ -128,7 +135,7 @@ const Header: React.FC<HeaderProps> = ({
                         </Link>
                         {windowWidth>theme.breakpoints.tv&&<DynamicNav isFocusing={isFocusing} changeFocus={changeFocus}/>}
                     </section>
-                    <UserActions isFocusing={isFocusing} changeFocus={changeFocus}/>
+                    <UserActions isFocusing={isFocusing} changeFocus={changeFocus} user={user}/>
                 </section>
             </StyledHeader>
         </>

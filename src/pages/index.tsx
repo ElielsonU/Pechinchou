@@ -3,16 +3,28 @@ import { Inter } from 'next/font/google'
 import { Header } from '@/components/sets'
 import HomePage from '@/components/templates/home'
 import { useEffect, useState } from 'react'
+import { getCookie } from 'cookies-next'
+import { connectUser } from '@/apiConnection'
 
 const inter = Inter({ subsets: ['latin'] })
 
 export default function Home(props: {toggleTheme: Function}) {
   const [windowWidth, setWindowWidth] = useState(0)
-  const [user, setUser] = useState(0)        
+  const [user, setUser] = useState({
+    id: 0,
+    username: "",
+    password: "",
+    token: ""
+  })        
 
   useEffect(() => {
     setWindowWidth(window.innerWidth)
     window.onresize = () => setWindowWidth(window.innerWidth)
+
+    const token: string = "a31a0905-6c95-4f4d-9415-1a79ab6800a7";
+
+    (async function () { setUser(await connectUser(token)) })()
+
   }, [])
 
   return (
@@ -23,7 +35,7 @@ export default function Home(props: {toggleTheme: Function}) {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
       
-      <Header toggleTheme={props.toggleTheme} windowWidth={windowWidth}/>
+      <Header toggleTheme={props.toggleTheme} windowWidth={windowWidth} user={user}/>
       
       <HomePage toggleTheme={props.toggleTheme} windowWidth={windowWidth}/>
     </>

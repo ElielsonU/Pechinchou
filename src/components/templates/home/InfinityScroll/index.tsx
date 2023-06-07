@@ -46,6 +46,7 @@ const InfinityScroll:React.FC<InfinityScrollProps> = ({
     
     const [page, setPage] = useState(1)
     const [loading, setLoading] = useState(true)
+    const [likes, setLikes] = useState([3, 9, 4, 1, 2, 99, 20])
 
     useEffect(() => {
         (async function () {
@@ -72,7 +73,13 @@ const InfinityScroll:React.FC<InfinityScrollProps> = ({
     return (
         <StyledInfinityScroll>
             {sales.map((item, index) => {
-                return <PromoCard sale={item} key={index} alreadyLiked={0}/>
+                if (item.id != 0) {
+                    const alreadyLiked = likes.filter((value) => {
+                        return index == value;
+                    })[0]
+
+                    return <PromoCard sale={item} key={index} alreadyLiked={alreadyLiked}/>
+                }
             })}
             {loading&&<ScrollLoader />}
         </StyledInfinityScroll>

@@ -23,10 +23,11 @@ const StyledAside = styled.aside`
     #Fix {
         position: fixed;
         top: 60px;
+        width: 300px;
     }
 `
 
-interface AsideProps{
+interface AsideProps {
     toggleTheme: Function;
     scrollY: number;
 }

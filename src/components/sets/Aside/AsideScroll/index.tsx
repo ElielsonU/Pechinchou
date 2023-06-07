@@ -1,7 +1,6 @@
 import styled, { useTheme } from "styled-components";
 import { ThemeChanger } from "@/components/sets";
 import { Generic } from "@/components/models";
-import { useState, useEffect } from "react";
 import Image from "next/image";
 
 const StyledAsideScroll = styled.section`        
