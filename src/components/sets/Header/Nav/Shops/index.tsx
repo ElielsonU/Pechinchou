@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-const Shops = styled.a`
+const StyledShops = styled.a`
     color: ${({theme}) => theme.colors.c6};
     font-weight: 500;
     text-decoration: none;
@@ -22,6 +22,12 @@ const Shops = styled.a`
     }
 `
 
-export {
-    Shops
+const Shops:React.FC = () => {
+    return (
+        <StyledShops href="#">
+            Lojas
+        </StyledShops>
+    )
 }
+
+export default Shops
