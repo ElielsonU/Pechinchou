@@ -1,49 +1,48 @@
 {
-    "product" : [
+  "product": [
+    {
+      "id": 1,
+      "name": "Fitoway WHEY ULTRA PROTEIN 900g - SABOR CHOCOLATE, Multicolorido.",
+      "description": "",
+      "value": 72.9,
+      "sale": 67.3,
+      "likes": 0,
+      "posted": "há 11H",
+      "store": {
+        "img": "https://pechinchou.com.br/_next/image?url=https%3A%2F%2Fadmin.pechinchou.com.br%2Fmedia%2Fimg%2Fstore%2F03%2F03%2FAmazon.png.jpg&w=1920&q=75",
+        "name": "Amazon"
+      },
+      "img": "https://pechinchou.com.br/_next/image?url=https%3A%2F%2Fadmin.pechinchou.com.br%2Fmedia%2Fimg%2Fproducts%2F61yksMgrRL._AC_SL1200_.jpg&w=1920&q=75",
+      "comments": []
+    },
+    {
+      "id": 2,
+      "name": "Fitoway WHEY ULTRA PROTEIN 900g - SABOR CHOCOLATE, Multicolorido.",
+      "description": "",
+      "value": 72.9,
+      "sale": 67.3,
+      "likes": 0,
+      "posted": "há 11H",
+      "store": {
+        "img": "https://pechinchou.com.br/_next/image?url=https%3A%2F%2Fadmin.pechinchou.com.br%2Fmedia%2Fimg%2Fstore%2F03%2F03%2FAmazon.png.jpg&w=1920&q=75",
+        "name": "Amazon"
+      },
+      "img": "https://pechinchou.com.br/_next/image?url=https%3A%2F%2Fadmin.pechinchou.com.br%2Fmedia%2Fimg%2Fproducts%2Fcanon-mega-tank-g3160-azul-e-preta-medio.png&w=1920&q=75",
+      "comments": [
         {
-            "id": 1,
-            "name": "Fitoway WHEY ULTRA PROTEIN 900g - SABOR CHOCOLATE, Multicolorido.",
-            "description": "",
-            "value": 72.90,
-            "sale": 67.30,
-            "likes": 0,
-            "posted": "há 11H",
-            "store": {
-                "img": "https://pechinchou.com.br/_next/image?url=https%3A%2F%2Fadmin.pechinchou.com.br%2Fmedia%2Fimg%2Fstore%2F03%2F03%2FAmazon.png.jpg&w=1920&q=75",
-                "name": "Amazon"
-            },
-            "img": "https://pechinchou.com.br/_next/image?url=https%3A%2F%2Fadmin.pechinchou.com.br%2Fmedia%2Fimg%2Fproducts%2F61yksMgrRL._AC_SL1200_.jpg&w=1920&q=75",
-            "comments": [
-                
-            ]
-        },
-        {
-            "id": 2,
-            "name": "Fitoway WHEY ULTRA PROTEIN 900g - SABOR CHOCOLATE, Multicolorido.",
-            "description": "",
-            "value": 72.90,
-            "sale": 67.30,
-            "likes": 0,
-            "posted": "há 11H",
-            "store": {
-                "img": "https://pechinchou.com.br/_next/image?url=https%3A%2F%2Fadmin.pechinchou.com.br%2Fmedia%2Fimg%2Fstore%2F03%2F03%2FAmazon.png.jpg&w=1920&q=75",
-                "name": "Amazon"
-            },
-            "img": "https://pechinchou.com.br/_next/image?url=https%3A%2F%2Fadmin.pechinchou.com.br%2Fmedia%2Fimg%2Fproducts%2Fcanon-mega-tank-g3160-azul-e-preta-medio.png&w=1920&q=75",
-            "comments": [
-                {
-                    "id": 1,
-                    "text": "Produto interessante"
-                }
-            ]
+          "id": 1,
+          "text": "Produto interessante"
         }
-    ],
-    "user" : [
-        {
-            "id": 1,
-            "username": "Elielson Urbano",
-            "password": "1234h1n1",
-            "token": "a31a0905-6c95-4f4d-9415-1a79ab6800a7"
-        }
-    ]
+      ]
+    }
+  ],
+  "user": [
+    {
+      "id": 1,
+      "username": "Elielson Urbano",
+      "email": "elielson7756@gmail.com",
+      "password": "1234h1n1",
+      "token": "a31a0905-6c95-4f4d-9415-1a79ab6800a7"
+    }
+  ]
 }

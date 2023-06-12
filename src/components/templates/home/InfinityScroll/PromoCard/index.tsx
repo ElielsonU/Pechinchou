@@ -43,7 +43,9 @@ const StyledPromoCard = styled.section`
         height: 160px;
         padding: 16px;
         position: relative;
-        display: inline-block;
+        display: flex;
+        align-items: center;
+        justify-content: center;
         background-color: white;
         border-radius: 8px;
         align-self: center;
@@ -55,10 +57,8 @@ const StyledPromoCard = styled.section`
         
         img:first-child {
             display: block;
-            margin: 0 auto;
-            height: 150px;
-            max-height: 100%;
             max-width: 100%;
+            max-height: 100%;
             position: relative;
         }
 

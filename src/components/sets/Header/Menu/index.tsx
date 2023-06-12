@@ -1,15 +1,41 @@
-import { StyledMenu, MenuNav, MenuShadow } from "./styled";
 import React, { useState } from "react";
-import Image from "next/image";
-import Link from "next/link";
-import ThemeChanger from "../../ThemeChanger";
+import styled from "styled-components";
+import MenuShadow from "./MenuShadow";
+import MenuNav from "./MenuNav";
+
+const StyledMenu = styled.section`
+    border-radius: 100%;
+    position: static;
+    cursor: pointer;
+    width: 36px;
+    height: 36px;
+    display: none;
+    color: ${({theme}) => theme.colors.c6};
+    border: 1px solid;
+    background-image: url(https://pechinchou.com.br/_next/static/media/ButtonMenuHeaderWhite.389dabe9.svg);
+    background-repeat: no-repeat;
+    background-position: 50%;
+    background-size: 18px;
+    filter: brightness(${({theme}) => theme.filter.brightness});
+    
+    @media (max-width: ${({theme}) => theme.breakpoints.tv}px) {
+        display: block;
+    }
+`
+
+type User = {
+    id: number;
+    username: string;
+}
 
 interface MenuProps {
     toggleTheme: Function;
+    user: User;
 }
 
 const Menu: React.FC<MenuProps> = ({
-    toggleTheme
+    toggleTheme,
+    user
 }) => {
     const [isMenuFocusing, setIsMenuFocusing] = useState(false)
 
@@ -20,150 +46,8 @@ const Menu: React.FC<MenuProps> = ({
     return (
         <div>
             <StyledMenu onClick={changeMenuFocus}/>
-            <MenuNav show={isMenuFocusing}>
-                <Image src="https://pechinchou.com.br/_next/static/media/IconCloseDrawerMenu.bfaf4948.svg" alt="cross" width={14} height={14} className="Cross" onClick={changeMenuFocus}/>
-                <span className="Profile" >
-                    <Image src="https://pechinchou.com.br/_next/static/media/DefaultUserImg.7c0b378f.svg" alt="user icon" width={32} height={32}/>
-                    @user
-                </span>
-
-                <hr />
-                
-                <ThemeChanger toggleTheme={toggleTheme}/>
-
-                <Link href="#"><img src="https://pechinchou.com.br/_next/static/media/IconStarWhite.1f0e0720.svg" alt="star" />Destaques</Link>
-                
-                <Link href="#"><img src="https://pechinchou.com.br/assets/icons/IconForum.svg" alt="fórum" />Avaliações</Link>
-                
-                <Link href="#"><img src="https://pechinchou.com.br/assets/icons/IconBlog.svg" alt="blog" />Blog</Link>
-
-                <label className="Drawer">
-                    <img src="https://pechinchou.com.br/_next/static/media/iconCategoryDropdown.9714cb15.svg" alt="category" />
-                    <span>Categorias</span>
-                    <input type="checkbox"/>
-                </label>
-                <ul>
-                    <li>
-                        <Link href="#">
-                            <img src="https://pechinchou.com.br/assets/icons/IconEletrodomesticos.svg"/>
-                            Eletrodomésticos
-                        </Link>
-                    </li>
-                    
-                    <li>
-                        <Link href="#">
-                            <img src="https://pechinchou.com.br/assets/icons/IconEletronicos.svg"/>
-                            Eletrônicos
-                        </Link>
-                    </li>
-                    
-                    <li>
-                        <Link href="#">
-                            <img src="https://pechinchou.com.br/assets/icons/IconUtilidades.svg"/>
-                            Utilidades Domésticas
-                        </Link>
-                    </li>
-                    
-                    <li>
-                        <Link href="#">
-                            <img src="https://pechinchou.com.br/assets/icons/IconTelefonia.svg"/>
-                            Telefonia
-                        </Link>
-                    </li>
-                    
-                    <li>
-                        <Link href="#">
-                            <img src="https://pechinchou.com.br/assets/icons/IconInformatica.svg"/>
-                            Informática
-                        </Link>
-                    </li>
-                    
-                    <li>
-                        <Link href="#">
-                            <img src="https://pechinchou.com.br/assets/icons/IconModa.svg"/>
-                            Moda, Beleza e Perfumaria
-                        </Link>
-                    </li>
-
-                    <li className="All">
-                        <Link href="#">
-                            ver todas as categorias...
-                        </Link>
-                    </li>
-                </ul>
-                
-                <label className="Drawer">
-                    <img src="https://pechinchou.com.br/_next/static/media/IconStoreMenuWhite.c873d6b4.svg" alt="category" />
-                    <span>Lojas</span>
-                    <input type="checkbox"/>
-                </label>
-                <ul >
-                    <li className="Store">
-                        <Link href="#">
-                            <img src="https://pechinchou.com.br/_next/image?url=%2Fassets%2Ficons%2FLogoStores%2FLogoAmazon.png&w=32&q=75"/>
-                            Amazon
-                        </Link>
-                    </li>
-
-                    <li className="Store">
-                        <Link href="#">
-                            <img src="https://pechinchou.com.br/_next/image?url=%2Fassets%2Ficons%2FLogoStores%2FLogoAmericanas.png&w=32&q=75"/>
-                            Americanas
-                        </Link>
-                    </li>
-
-                    <li className="Store">
-                        <Link href="#">
-                            <img src="https://pechinchou.com.br/_next/image?url=%2Fassets%2Ficons%2FLogoStores%2FLogoMagalu.png&w=32&q=75"/>
-                            Magazine Luiza
-                        </Link>
-                    </li>
-
-                    <li className="Store">
-                        <Link href="#">
-                            <img src="https://pechinchou.com.br/_next/image?url=%2Fassets%2Ficons%2FLogoStores%2FLogoShoptime.png&w=32&q=75"/>
-                            ShopTime
-                        </Link>
-                    </li>
-
-                    <li className="Store">
-                        <Link href="#">
-                            <img src="https://pechinchou.com.br/_next/image?url=%2Fassets%2Ficons%2FLogoStores%2FLogoNetshoes.png&w=32&q=75"/>
-                            Netshoes
-                        </Link>
-                    </li>
-
-                    <li className="Store">
-                        <Link href="#">
-                            <img src="https://pechinchou.com.br/_next/image?url=%2Fassets%2Ficons%2FLogoStores%2FLogoCasasBahia.png&w=32&q=75"/>
-                            Casas Bahia
-                        </Link>
-                    </li>
-
-                    <li className="All">
-                        <Link href="#">
-                            ver todas as lojas...
-                        </Link>
-                    </li>
-                </ul>
-
-                <hr />
-
-                <Link href="#"><img src="https://pechinchou.com.br/assets/icons/IconForum.svg" alt="fórum" />Fale com o chat</Link>
-
-                <hr />
-
-                <Link href="#"><img src="https://pechinchou.com.br/assets/icons/IconUser.svg" alt="user" />Meu perfil</Link>
-                
-                <hr />
-                
-                <Link href="#">Política de privacidade</Link>
-                            
-                <Link href="#">Termos de uso</Link>
-
-                <Link href="#" className="Red">Sair</Link>
-            </MenuNav>
-            <MenuShadow show={isMenuFocusing} onClick={changeMenuFocus}/>
+            <MenuNav show={isMenuFocusing} changeFocus={changeMenuFocus} toggleTheme={toggleTheme} user={user}/>
+            <MenuShadow show={isMenuFocusing} changeFocus={changeMenuFocus}/>
         </div>
     )
 }

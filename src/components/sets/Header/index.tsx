@@ -2,7 +2,6 @@ import styled, { useTheme } from "styled-components";
 import UserActions from "./UserActions";
 import Image from "next/image";
 import Link from "next/link";
-import Nav from "./Nav";
 import { useState } from "react";
 import dynamic from "next/dynamic";
 
@@ -95,14 +94,16 @@ interface HeaderProps {
     user: User;
 }
 
-const DynamicMenu = dynamic(() => import("../Header/Menu"), {
+const loading = () => <span className="Loader"/>
+
+const DynamicMenu = dynamic(() => import("./Menu"), {
     ssr: false,
-    loading: () => <span>Loading...</span>,
+    loading
 })
 
-const DynamicNav = dynamic(() => import("../Header/Nav"), {
+const DynamicNav = dynamic(() => import("./Nav"), {
     ssr: false,
-    loading: () => <span>Loading...</span>,
+    loading
 })
 
 const Header: React.FC<HeaderProps> = ({
@@ -129,13 +130,13 @@ const Header: React.FC<HeaderProps> = ({
                     <BackgroundShadow show={isFocusing}/>
                     <OutSpace show={isFocusing} onClick={outspaceClickHandler}/>
                     <section>
-                        {windowWidth<=theme.breakpoints.tv&&windowWidth>0?<DynamicMenu toggleTheme={toggleTheme}/>:<></>}
+                        {windowWidth<=theme.breakpoints.tv&&windowWidth>0&&<DynamicMenu toggleTheme={toggleTheme} user={user}/>}
                         <Link href={"/"}>
                             <Image src={theme.images.logo} alt="pechinchou icon" width={132} height={32}/>
                         </Link>
                         {windowWidth>theme.breakpoints.tv&&<DynamicNav isFocusing={isFocusing} changeFocus={changeFocus}/>}
                     </section>
-                    <UserActions isFocusing={isFocusing} changeFocus={changeFocus} user={user}/>
+                    <UserActions isFocusing={isFocusing} changeFocus={changeFocus} user={user} windowWidth={windowWidth}/>
                 </section>
             </StyledHeader>
         </>

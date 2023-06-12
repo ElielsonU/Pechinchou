@@ -9,21 +9,17 @@ import { connectUser } from '@/apiConnection'
 const inter = Inter({ subsets: ['latin'] })
 
 export default function Home(props: {toggleTheme: Function}) {
-  const [windowWidth, setWindowWidth] = useState(0)
+  const [windowWidth, setWindowWidth] = useState(-1)
   const [user, setUser] = useState({
     id: 0,
     username: "",
-    password: "",
-    token: ""
   })        
 
   useEffect(() => {
     setWindowWidth(window.innerWidth)
-    window.onresize = () => setWindowWidth(window.innerWidth)
+    window.onresize = () => setWindowWidth(window.innerWidth);
 
-    const token: string = "a31a0905-6c95-4f4d-9415-1a79ab6800a7";
-
-    (async function () { setUser(await connectUser(token)) })()
+    (async function () { setUser(await connectUser()) })()
 
   }, [])
 

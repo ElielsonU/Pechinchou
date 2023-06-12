@@ -6,7 +6,7 @@ const app = server.create()
 app.use(server.defaults())
 app.use(server.bodyParser)
 
-app.post("/auth/login", (req, res) => {
+app.post("/auth/connect", (req, res) => {
     const db = JSON.parse(fs.readFileSync("./db.json"))
     const token = req.body.token
 
