@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import Link from "next/link";
 import Image from "next/image";
-import ThemeChanger from "@/components/sets/ThemeChanger";
+import { DynamicThemeChanger } from "@/components/sets";
 import { disconnect } from "@/apiConnection";
 
 interface HiddenProps {
@@ -184,7 +184,7 @@ const MenuNav:React.FC<MenuNavProps> = ({
 
                 <hr />
                 
-                <ThemeChanger toggleTheme={toggleTheme}/>
+                <DynamicThemeChanger toggleTheme={toggleTheme}/>
 
                 <Link href="#"><img src="https://pechinchou.com.br/_next/static/media/IconStarWhite.1f0e0720.svg" alt="star" />Destaques</Link>
                 

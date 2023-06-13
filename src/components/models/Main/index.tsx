@@ -10,6 +10,7 @@ const Main = styled.main`
     margin: 0 auto;
     width: calc(100% - 48px);
     max-width: 1336px;
+    flex-wrap: wrap;
 
     > section {
         color: ${({theme}) => theme.colors.c6};

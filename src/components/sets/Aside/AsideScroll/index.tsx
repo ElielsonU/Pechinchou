@@ -1,5 +1,5 @@
 import styled, { useTheme } from "styled-components";
-import { ThemeChanger } from "@/components/sets";
+import { DynamicThemeChanger } from "@/components/sets";
 import { Generic } from "@/components/models";
 import Image from "next/image";
 
@@ -11,9 +11,9 @@ const StyledAsideScroll = styled.section`
         z-index: 1;
         transition: top 400ms ease;
         top: 0px;
-        margin-top: 16px;
         
         .ToggleTheme {
+            margin-top: 16px;
             padding: 0;
             height: 58px;
             display: flex;
@@ -58,7 +58,7 @@ const StyledAsideScroll = styled.section`
 `
 
 interface AsideScrollProps {
-    toggleTheme: Function;
+    toggleTheme?: Function;
     scrollY: number;
 }
 
@@ -70,9 +70,9 @@ const AsideScroll:React.FC<AsideScrollProps> = ({
 
     return (
         <StyledAsideScroll id={`${scrollY > 1400? "Fix" : null}`}>
-                <section className="ToggleTheme">
-                    <ThemeChanger toggleTheme={toggleTheme}/>
-                </section>
+                {toggleTheme&&<section className="ToggleTheme">
+                    <DynamicThemeChanger toggleTheme={toggleTheme}/>
+                </section>}
                 
                 <section className="SocialMediaAds">
                     <Generic as="strong" font_size={theme.font_sizes.medium}>Receba no WhatsApp</Generic>

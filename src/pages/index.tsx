@@ -3,7 +3,6 @@ import { Inter } from 'next/font/google'
 import { Header } from '@/components/sets'
 import HomePage from '@/components/templates/home'
 import { useEffect, useState } from 'react'
-import { getCookie } from 'cookies-next'
 import { connectUser } from '@/apiConnection'
 
 const inter = Inter({ subsets: ['latin'] })
@@ -20,7 +19,6 @@ export default function Home(props: {toggleTheme: Function}) {
     window.onresize = () => setWindowWidth(window.innerWidth);
 
     (async function () { setUser(await connectUser()) })()
-
   }, [])
 
   return (
@@ -31,7 +29,7 @@ export default function Home(props: {toggleTheme: Function}) {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
       
-      <Header toggleTheme={props.toggleTheme} windowWidth={windowWidth} user={user}/>
+      <Header toggleTheme={props.toggleTheme} windowWidth={windowWidth} user={user} type='home'/>
       
       <HomePage toggleTheme={props.toggleTheme} windowWidth={windowWidth}/>
     </>

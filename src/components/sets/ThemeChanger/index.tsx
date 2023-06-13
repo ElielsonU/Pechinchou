@@ -2,9 +2,13 @@ import React, { useEffect, useState } from "react";
 import styled, { useTheme } from "styled-components";
 import Image from "next/image";
 
-const StyledThemeChanger = styled.label`
+interface StyledThemeChangerProps {
+    hide?: boolean;
+}
+
+const StyledThemeChanger = styled.label<StyledThemeChangerProps>`
     gap: 10px;
-    display: flex;
+    display: ${(props) => props.hide?"none":"flex"};
     cursor: pointer;
     
         > input {
@@ -48,12 +52,13 @@ const StyledThemeChanger = styled.label`
         }
 `
 
-interface ThemeChangerProps {
+interface ThemeChangerProps extends StyledThemeChangerProps{
     toggleTheme: Function;
 }
 
 const ThemeChanger: React.FC<ThemeChangerProps> = ({
-    toggleTheme
+    toggleTheme,
+    hide
 }) => {
 
     // false == white | true  == dark
@@ -77,7 +82,7 @@ const ThemeChanger: React.FC<ThemeChangerProps> = ({
     }
     
     return (
-        <StyledThemeChanger>
+        <StyledThemeChanger hide={hide}>
             <Image src="https://pechinchou.com.br/_next/static/media/IconTheme.d7f5eb15.svg" alt="sun" width={16} height={16}/>
             Modo noturno
             <input type="checkbox" onChange={changeUsedTheme} checked={usedTheme}/>

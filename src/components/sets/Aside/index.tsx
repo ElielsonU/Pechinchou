@@ -1,5 +1,5 @@
 import styled from "styled-components"
-import Footer from "../Footer"
+import { DynamicFooter } from ".."
 import { useState } from "react"
 import AsideScroll from "./AsideScroll"
 import AdsCoupons from "./AdsCoupons"
@@ -28,13 +28,15 @@ const StyledAside = styled.aside`
 `
 
 interface AsideProps {
-    toggleTheme: Function;
-    scrollY: number;
+    toggleTheme?: Function;
+    scrollY?: number;
+    type: "home" | "sale";
 }
 
 const Aside:React.FC<AsideProps> = ({
     toggleTheme,
-    scrollY
+    scrollY,
+    type
 }) => {
     const [visibleFooter, setVisibleFooter] = useState(false)
 
@@ -45,17 +47,19 @@ const Aside:React.FC<AsideProps> = ({
     return (
         <>
             <StyledAside>
-                <AsideScroll toggleTheme={toggleTheme} scrollY={scrollY}/>
+                <AsideScroll toggleTheme={toggleTheme} scrollY={scrollY||0} />
 
                 <AdsCoupons />
 
                 <AdsPosts />
 
-                <ShowFooter onClick={changeFooterVisiblity}>
+                {type=="home"
+                &&<ShowFooter onClick={changeFooterVisiblity}>
                     exibir rodapé
-                </ShowFooter>
+                </ShowFooter>}
             </StyledAside>
-            <Footer hidden={true} visible={visibleFooter} changeVisibility={changeFooterVisiblity}/>
+            
+            {type=="home"&&<DynamicFooter hidden={true} visible={visibleFooter} changeVisibility={changeFooterVisiblity}/>}
         </>
     )
 }

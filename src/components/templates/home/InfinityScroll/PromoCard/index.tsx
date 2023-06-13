@@ -2,6 +2,7 @@ import styled from "styled-components";
 import { Generic, PLink } from "@/components/models";
 import { useTheme } from "styled-components";
 import { useState } from "react";
+import Link from "next/link";
 
 const StyledPromoCard = styled.section`
 
@@ -182,10 +183,10 @@ const PromoCard: React.FC<PromoCardProps> = ({
 
     return (
         <StyledPromoCard>
-            <a href="#" className="ProductImage">
+            <Link href={`/sale/${sale.id}`} className="ProductImage">
                 <img src={sale.img} alt={sale.name} />
                 <img src={sale.store.img} alt={sale.store.name} />
-            </a>
+            </Link>
             
             <Generic font_size={theme.font_sizes.tiny}>{sale.posted}</Generic>
 

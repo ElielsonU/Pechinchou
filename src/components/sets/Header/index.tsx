@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
 import dynamic from "next/dynamic";
+import { RoundedButton } from "@/components/models";
 
 const StyledHeader = styled.header`
     position: fixed;
@@ -92,6 +93,7 @@ interface HeaderProps {
     toggleTheme: Function;
     windowWidth: number;
     user: User;
+    type: "sale" | "home";
 }
 
 const loading = () => <span className="Loader"/>
@@ -106,36 +108,46 @@ const DynamicNav = dynamic(() => import("./Nav"), {
     loading
 })
 
+const DynamicGoBackButton = dynamic(() => import("./GoBackButton"), {
+    ssr: false,
+    loading
+})
+
 const Header: React.FC<HeaderProps> = ({
     toggleTheme,
     windowWidth,
-    user
+    user,
+    type
 }) => {
     const theme = useTheme()
     const [isFocusing, setIsFocusing] = useState(false)
 
-    const changeFocus = () => {
-        setIsFocusing(!isFocusing)
-    }
+    const changeFocus = () => setIsFocusing(!isFocusing)
 
-    const outspaceClickHandler = () => {
-        changeFocus()
-    }
+    const outspaceClickHandler = () => changeFocus()
 
     return (
         <>
             <FakeSpace/>
+
             <StyledHeader>
                 <section>
                     <BackgroundShadow show={isFocusing}/>
+
                     <OutSpace show={isFocusing} onClick={outspaceClickHandler}/>
+
                     <section>
-                        {windowWidth<=theme.breakpoints.tv&&windowWidth>0&&<DynamicMenu toggleTheme={toggleTheme} user={user}/>}
+                        {type == "home"&&windowWidth<=theme.breakpoints.tv&&windowWidth>0&&<DynamicMenu toggleTheme={toggleTheme} user={user}/>}
+
+                        {type == "sale"&&windowWidth<=theme.breakpoints.tv&&windowWidth>0&&<DynamicGoBackButton />}
+
                         <Link href={"/"}>
                             <Image src={theme.images.logo} alt="pechinchou icon" width={132} height={32}/>
                         </Link>
+
                         {windowWidth>theme.breakpoints.tv&&<DynamicNav isFocusing={isFocusing} changeFocus={changeFocus}/>}
                     </section>
+
                     <UserActions isFocusing={isFocusing} changeFocus={changeFocus} user={user} windowWidth={windowWidth}/>
                 </section>
             </StyledHeader>

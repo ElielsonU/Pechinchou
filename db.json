@@ -13,21 +13,30 @@
         "name": "Amazon"
       },
       "img": "https://pechinchou.com.br/_next/image?url=https%3A%2F%2Fadmin.pechinchou.com.br%2Fmedia%2Fimg%2Fproducts%2F61yksMgrRL._AC_SL1200_.jpg&w=1920&q=75",
+      "categories": {
+        "main" : "Esporte e Lazer",
+        "sub": "Suplementos Alimentares"
+      },
       "comments": []
     },
+    
     {
       "id": 2,
-      "name": "Fitoway WHEY ULTRA PROTEIN 900g - SABOR CHOCOLATE, Multicolorido.",
+      "name": "Copo Térmico de Caipirinha 296ml Cinza Contigo",
       "description": "",
-      "value": 72.9,
-      "sale": 67.3,
-      "likes": 0,
+      "value": 99.9,
+      "sale": 79,
+      "likes": 9,
       "posted": "há 11H",
       "store": {
         "img": "https://pechinchou.com.br/_next/image?url=https%3A%2F%2Fadmin.pechinchou.com.br%2Fmedia%2Fimg%2Fstore%2F03%2F03%2FAmazon.png.jpg&w=1920&q=75",
         "name": "Amazon"
       },
-      "img": "https://pechinchou.com.br/_next/image?url=https%3A%2F%2Fadmin.pechinchou.com.br%2Fmedia%2Fimg%2Fproducts%2Fcanon-mega-tank-g3160-azul-e-preta-medio.png&w=1920&q=75",
+      "img": "https://pechinchou.com.br/_next/image?url=https%3A%2F%2Fadmin.pechinchou.com.br%2Fmedia%2Fimg%2Fproducts%2F412Zve0H9ZL._AC_SL1000_.jpg&w=3840&q=75",
+      "categories": {
+        "main" : "Utilidades Domésticas",
+        "sub": "Copo"
+      },
       "comments": [
         {
           "id": 1,

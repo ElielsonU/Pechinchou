@@ -4,7 +4,6 @@ import FooterHeader from "./FooterHeader";
 import OtherPagesSection from "./OtherPagesSection";
 import Image from "next/image";
 import { Generic } from "@/components/models";
-import { useState } from "react";
 
 interface FooterProps {
     hidden?: boolean;
@@ -30,7 +29,7 @@ const StyledFooter = styled.footer<FooterProps>`
     align-items: center;
     gap: 35px;
     z-index: 1005;
-    position: fixed;
+    position: ${(props) => props.hidden?"fixed":"relative"};
 
     .Hidden {
         display: none;

@@ -4,9 +4,10 @@ import Router from "next/router"
 
 const host = typeof location != "undefined"
     ?`http://${location.host.replace(":3000", ":8000")}`
-    :""
+    :"http://192.168.0.6:8000"
     
 const getSales = async (page: number) => {
+    
     try {
         const res = await axios.get(host+`/product?_page=${page}&&_limit=20`)
         return res.data
@@ -15,6 +16,17 @@ const getSales = async (page: number) => {
     }
 
     return []
+}
+
+const getSale = async (id: number) => {
+    try {
+        const res = await axios.get(host+`/product/${id}`)
+        return res.data
+    }
+
+    catch (e: any) {
+
+    }
 }
 
 const connectUser = async () => {
@@ -42,7 +54,6 @@ const login = async (email: string, password: string) => {
 
     catch (e: any) {
         console.log("Erro: "+ e.message)
-        
     }
 }
 
@@ -54,7 +65,8 @@ const disconnect = () => {
 
 export {
     getSales,
+    getSale,
     connectUser,
     login,
-    disconnect
+    disconnect,
 }

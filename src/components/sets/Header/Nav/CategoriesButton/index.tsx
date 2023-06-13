@@ -43,7 +43,7 @@ const CategoryButton:React.FC<CategoryButtonProps> = ({
         <StyledCategoryButton onClick={CategoryHandler} value={Number(showCategories)}>
             <Image src="https://pechinchou.com.br/_next/static/media/IconCategoryDropdownNew.9a67f950.svg" alt="categories" width={15} height={15}/>
             Categorias
-            <Image src="https://pechinchou.com.br/_next/static/media/Arrow.31151b04.svg" alt="arrow" width={15} height={15} className="Arrow"/>
+            <Image src="https://pechinchou.com.br/_next/static/media/Arrow.31151b04.svg" alt="arrow" width={13} height={13} className="Arrow"/>
             <Categories show={showCategories}/>
         </StyledCategoryButton>
     )

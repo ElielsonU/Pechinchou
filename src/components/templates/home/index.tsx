@@ -31,7 +31,7 @@ const HomePage:React.FC<HomePageProps> = ({
                 <InfinityScroll scrollY={scrollY}/>
             </section>
 
-            {windowWidth>theme.breakpoints.tv&&<DynamicAside toggleTheme={toggleTheme} scrollY={scrollY}/>}
+            {windowWidth>theme.breakpoints.tv&&<DynamicAside toggleTheme={toggleTheme} scrollY={scrollY} type="home"/>}
         </Main>
     )
 } 
