@@ -1,6 +1,6 @@
-import Image from "next/image";
 import styled from "styled-components";
 import MainInfos from "./MainInfos";
+import Interactive from "./Interactive";
 
 const StyledSaleCard = styled.section`
     position: relative;
@@ -38,6 +38,10 @@ const StyledSaleCard = styled.section`
         }
     }
 
+    @media (max-width: ${({theme}) => theme.breakpoints.tablet}px) {
+        justify-content: center;
+        height: auto;
+    }
 `
 
 type Sale = {
@@ -74,6 +78,8 @@ const SaleCard:React.FC<SaleCardProps> = ({
             </div>
 
             <MainInfos sale={sale}/>
+
+            <Interactive sale={sale}/>
         </StyledSaleCard>
     )
 }

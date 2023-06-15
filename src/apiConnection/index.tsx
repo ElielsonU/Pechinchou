@@ -4,7 +4,7 @@ import Router from "next/router"
 
 const host = typeof location != "undefined"
     ?`http://${location.host.replace(":3000", ":8000")}`
-    :"http://192.168.0.6:8000"
+    :"http://localhost:8000"
     
 const getSales = async (page: number) => {
     

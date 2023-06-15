@@ -20,7 +20,13 @@ const StyledOtherPagesSection = styled.section`
             margin-bottom: 5px;
             display: block;
         }
+
+        @media (max-width: ${({theme}) => theme.breakpoints.tv}px) {
+            display: none;
+        }
     }
+
+    
 `
 
 const FollowUs = styled.div`
@@ -29,7 +35,7 @@ const FollowUs = styled.div`
         display: block;
     }
 
-    .Links {
+    > .Links {
         display: flex;
         gap: 10px;
         > a {

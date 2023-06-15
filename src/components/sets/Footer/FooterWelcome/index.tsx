@@ -9,6 +9,7 @@ const StyledWelcome = styled.section`
     justify-content: space-between;
     width: 1362px;
     max-width: 100%;
+    gap: 20px;
 `
 
 const FooterWelcome:React.FC = () => {

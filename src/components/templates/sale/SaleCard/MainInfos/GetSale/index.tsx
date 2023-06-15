@@ -16,7 +16,7 @@ const StyledGetSale = styled.section`
         column-gap: 5px;
 
         > .Image {
-            background-color: white;
+            background-color: gray;
             width: 32px;
             height: 32px;
             border-radius: 50%;
@@ -24,7 +24,7 @@ const StyledGetSale = styled.section`
     }
 
     > .ToStore {
-        color: ${({theme}) => theme.colors.c6};
+        color: #fff;
         padding: 5px 50px;
         border-radius: 50px;
         background-color: ${({theme}) => theme.colors.c7};
@@ -33,19 +33,38 @@ const StyledGetSale = styled.section`
         transition: scale 200ms linear;
 
         ::after {
-                    content: "";
-                    display: inline-block;
-                    width: 12px;
-                    height: 12px;
-                    background-image: url(https://pechinchou.com.br/_next/static/media/IconGoToPromoWhite.1a3834bb.svg);
-                    position: absolute;
-                    bottom: 10px;
-                    right: 20px;
-                }
+            content: "";
+            display: inline-block;
+            width: 12px;
+            height: 12px;
+            background-image: url(https://pechinchou.com.br/_next/static/media/IconGoToPromoWhite.1a3834bb.svg);
+            position: absolute;
+            bottom: 10px;
+            right: 20px;
+        }
         
         :hover {
             scale: 1.03;
             filter: brightness(90%);
+        }
+    }
+
+    @media (max-width: ${({theme}) => theme.breakpoints.tablet}px) {
+        .By {
+            display: none;
+        }
+
+        .ToStore {
+            flex-grow: 1;
+            padding: 10px;
+            font-size: ${({theme}) => theme.font_sizes.medium};
+
+            ::after {
+                height: 20px;
+                width: 20px;
+                background-size: 100%;
+                background-repeat: no-repeat;
+            }
         }
     }
 `

@@ -7,6 +7,11 @@ const StyledWelcomeText = styled.div`
     display: flex;
     flex-direction: column;
     width: 450px;
+    max-width: 100%;
+
+    @media (max-width: ${({theme}) => theme.breakpoints.tv}px) {
+        width: 100%;
+    }
 `
 
 const WelcomeText: React.FC = () => {

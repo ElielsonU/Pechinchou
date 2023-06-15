@@ -4,6 +4,8 @@ import Image from "next/image";
 import React from "react";
 
 const StyledSecuritySite = styled.div`
+    align-self: flex-start;
+
     a {
         display: block;
         background-color: ${({theme}) => theme.colors.c2};

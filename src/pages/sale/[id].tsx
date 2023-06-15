@@ -1,6 +1,6 @@
 import Head from "next/head"
 import { useState, useEffect } from "react"
-import { DynamicAside, DynamicFooter, Header } from "@/components/sets"
+import { DynamicFooter, Header } from "@/components/sets"
 import { connectUser, getSale } from "@/apiConnection"
 import { GetStaticPaths, GetStaticProps } from "next"
 import { getSales } from "@/apiConnection"
@@ -40,6 +40,10 @@ interface Sale {
   store: {
     img: string,
     name: string
+  },
+  categories: {
+    main: string,
+    sub: string
   },
   img: string,
   comments: []

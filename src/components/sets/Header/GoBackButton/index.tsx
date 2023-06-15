@@ -1,7 +1,13 @@
 import { RoundedButton } from "@/components/models";
 import Image from "next/image";
 import { useRouter } from "next/router";
-import { useTheme } from "styled-components";
+import styled, { useTheme } from "styled-components";
+
+const StyledGoBackButton = styled.button`
+    .Filtered {
+        filter: invert(${({theme}) => theme.filter.invert});
+    }
+`
 
 const GoBackButton:React.FC = () => {
     const theme = useTheme()
@@ -12,7 +18,7 @@ const GoBackButton:React.FC = () => {
     return (
         <RoundedButton color={theme.colors.c6}>
             <button onClick={goBack}>
-                <Image src="https://pechinchou.com.br/_next/static/media/IconBackDark.05c7a02a.svg" alt="arrow" width={20} height={20}/>
+                <Image src="https://pechinchou.com.br/_next/static/media/IconBackNew.1d29d562.svg" alt="arrow" width={20} height={20} className="Filtered"/>
             </button>
         </RoundedButton>
     )

@@ -28,7 +28,7 @@ const StyledFooter = styled.footer<FooterProps>`
     -webkit-box-align: center;
     align-items: center;
     gap: 35px;
-    z-index: 1005;
+    z-index: ${(props) => props.hidden?"1005":"0"};
     position: ${(props) => props.hidden?"fixed":"relative"};
 
     .Hidden {
@@ -48,8 +48,15 @@ const StyledFooter = styled.footer<FooterProps>`
         top: 20px;
     }
 
+    > .Info {
+        text-align: center;
+    }
+
     @media (max-width: ${({theme}) => theme.breakpoints.tv}px) {
-        display: none;
+        padding: 10px 10px 0;
+        > :nth-child(n + 2) {
+            flex-direction: column;
+        }
     }
 `
 
@@ -68,10 +75,6 @@ const BackgroundShadow = styled.div<BackgroundShadowProps>`
     position: fixed;
     cursor: pointer;
     top: 0px;
-
-    @media (max-width: ${({theme}) => theme.breakpoints.tv}px) {
-        display: none;
-    }
 `
 
 const Footer:React.FC<FooterProps> = ({
@@ -86,7 +89,7 @@ const Footer:React.FC<FooterProps> = ({
                 <FooterHeader />
                 <FooterWelcome />
                 <OtherPagesSection />
-                <Generic>
+                <Generic className="Info">
                     L R Intermediação e Agenciamento LDTA - 43.690.532/0001-00 R. São João, 371 - São Benedito, Pau dos Ferros - RN.
                     <Generic className="Copyright">© Pechinchou 2014-2023</Generic>
                 </Generic>

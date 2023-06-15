@@ -8,6 +8,7 @@ interface GlobalStyleProps {
 const GlobalStyle = createGlobalStyle<GlobalStyleProps>`
     :root {
         font-size: 14px;
+        scroll-behavior: smooth;
     }
 
     * {
@@ -61,6 +62,7 @@ const GlobalStyle = createGlobalStyle<GlobalStyleProps>`
         border-bottom: 4px solid ${({theme}) => theme.colors.c2};
         border-left: 4px solid ${({theme}) => theme.colors.c7};    
         display: inline-block;
+        margin: 0 auto;
         width: 20px;
         height: 20px;
         border-radius: 50%;

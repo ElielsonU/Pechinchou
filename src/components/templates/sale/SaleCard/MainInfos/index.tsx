@@ -67,8 +67,6 @@ const MainInfos:React.FC<MainInfosProps> = ({
             </div>
 
             <GetSale posted={sale.posted}/>
-
-            
         </StyledMainInfos>
     )
 }
