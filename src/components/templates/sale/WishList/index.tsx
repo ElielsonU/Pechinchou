@@ -5,7 +5,6 @@ import TermsList from "./TermsList";
 const StyledWishList = styled.section`
     position: relative;
     width: 100%;
-    border-radius: 4px;
     padding: 16px;
     display: flex;
     flex-direction: column;

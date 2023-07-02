@@ -2,31 +2,70 @@ import styled, { useTheme } from "styled-components";
 import Image from "next/image";
 import { Generic, PLink } from "@/components/models";
 
-
 const StyledOtherPagesSection = styled.section`
     display: flex;
     width: 1360px;
     max-width: 100%;
     justify-content: space-between;
+    row-gap: 20px;
 
     > .Links {
         list-style: none;
         display: flex;
         flex-direction: column;
         padding: 0;
-        gap: 12px;
+        gap: 5px;
+        margin: 0;
 
         > .Title {
-            margin-bottom: 5px;
-            display: block;
+            display: flex;
+            align-items: center;
+            position: relative;
+
+            > input {
+                display: none;
+            }
         }
 
         @media (max-width: ${({theme}) => theme.breakpoints.tv}px) {
-            display: none;
+            align-items: left;
+            padding: 8px;
+            background-color: ${({theme}) => theme.colors.c2};
+            border-radius: 5px;
+            
+            li {
+                display: none;
+            }
+
+            > :has(input:checked) {
+                ~ li  {
+                    display: block;
+                }
+            }
+
+            .Title {
+                cursor: pointer;
+
+                :after {
+                    content: "";
+                    position: absolute;
+                    right: 16px;
+                    display: inline-block;
+                    width: 8px;
+                    height: 8px;
+                    margin-left: 10px;
+                    border-bottom: 2px solid ${({theme}) => theme.colors.c7};
+                    border-right: 2px solid ${({theme}) => theme.colors.c7};
+                    rotate: 45deg;
+                    transition: rotate 300ms linear;
+                }
+
+                :has(input:checked)::after {
+                    rotate: 225deg;
+                }
+            }
         }
     }
-
-    
 `
 
 const FollowUs = styled.div`
@@ -51,20 +90,26 @@ const OtherPagesSection:React.FC = () => {
     return (
         <StyledOtherPagesSection>
             <ul className="Links">
-                <Generic font_size={theme.font_sizes.medium} font_weight="900" className="Title">Sobre a Pechinchou</Generic>
+                <Generic as="label" font_size={theme.font_sizes.medium} font_weight="900" className="Title">Sobre a Pechinchou
+                    <input type="checkbox" />
+                </Generic>
                 <li><a href="#">Nosso Time</a></li>
                 <li><a href="#">Blog Pechinchou</a></li>
             </ul>
             
             <ul className="Links">
-                <Generic font_size={theme.font_sizes.medium} font_weight="900" className="Title">Páginas Especiais</Generic>
+                <Generic as="label" font_size={theme.font_sizes.medium} font_weight="900" className="Title">Páginas Especiais
+                    <input type="checkbox"/>
+                </Generic>
                 <li><a href="#">Dia das Mães</a></li>
                 <li><a href="#">Dia dos Pais</a></li>
                 <li><a href="#">Black Friday</a></li>
             </ul>
             
             <ul className="Links">
-                <Generic font_size={theme.font_sizes.medium} font_weight="900" className="Title">Suporte</Generic>
+                <Generic as="label" font_size={theme.font_sizes.medium} font_weight="900" className="Title">Suporte
+                    <input type="checkbox"/>
+                </Generic>
                 <li><a href="#">Fase Conosco</a></li>
                 <li><a href="#">Termos de uso</a></li>
                 <li><a href="#">Política de Privacidade</a></li>

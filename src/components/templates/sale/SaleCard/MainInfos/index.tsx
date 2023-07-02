@@ -4,6 +4,7 @@ import GetSale from "./GetSale";
 
 const StyledMainInfos = styled.div`
     height: 190px;
+    max-width: 100%;
     justify-content: space-between;
     display: flex;
     flex-direction: column;
@@ -19,8 +20,31 @@ const StyledMainInfos = styled.div`
         > * {
             display: block;
         }
+
+        @media (max-width: ${({theme}) => theme.breakpoints.mobile}px) {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+
+            > h3 {
+                display: flex;
+                align-items: center;
+                gap: 3px;
+            }
+        }
+    }
+
+    @media (max-width: ${({theme}) => theme.breakpoints.tablet}px) {
+        height: auto;
+        gap: 15px;
     }
 `
+
+type Comment = {
+    id: number,
+    text: string,
+    poster: string
+}
 
 type Sale = {
     id: number,
@@ -39,7 +63,7 @@ type Sale = {
         main: string,
         sub: string
     },
-    comments: []
+    commentsQ: number
 }
 
 

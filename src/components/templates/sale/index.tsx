@@ -2,13 +2,44 @@ import { Generic, Main } from "@/components/models"
 import styled, { useTheme } from "styled-components"
 import { DynamicAside } from "@/components/sets"
 import { DynamicThemeChanger } from "@/components/sets"
-import SaleCard from "./SaleCard"
-import SaleCategory from "./SaleCategory"
-import SaleDescription from "./SaleDescription"
-import WishList from "./WishList"
-import RelatedProducts from "./RelatedProducts"
-import PostComments from "./Comments/PostComments"
-import Comments from "./Comments"
+import dynamic from "next/dynamic"
+
+const loading = () => <div className="Loader"/>
+
+const DynamicSubCategory = dynamic(() => import("./SubCategory"), {
+    ssr: false,
+    loading
+})
+
+const DynamicSaleCard = dynamic(() => import("./SaleCard") , {
+    ssr: false,
+    loading
+})
+
+const DynamicSaleCategory = dynamic(() => import("./SaleCategory"), {
+    ssr: false,
+    loading
+})
+
+const DynamicComments = dynamic(() => import("./Comments"), {
+    ssr: false,
+    loading
+})
+
+const DynamicWishList = dynamic(() => import("./WishList"), {
+    ssr: false,
+    loading
+})
+
+const DynamicRelatedProducts = dynamic(() => import("./RelatedProducts"), {
+    ssr: false,
+    loading
+})
+
+const DynamicSaleDescription = dynamic(() => import("./SaleDescription"), {
+    ssr: false,
+    loading
+})
 
 type Sale = {
     id: number,
@@ -27,13 +58,37 @@ type Sale = {
         main: string,
         sub: string
     },
-    comments: []
+    commentsQ: number
 }
 
 const StyledSalePage = styled.section`
     display: flex;
     flex-direction: column;
     gap: 20px;
+
+    > * {
+        border-radius: 12px;
+        overflow: hidden;
+
+        @media (max-width: ${({theme}) => theme.breakpoints.mobile}px) {
+            border-radius: 0 !important;
+        }
+    }
+
+    #comments {
+        overflow: visible;
+    }
+
+    > .Info {
+        @media (max-width: ${({theme}) => theme.breakpoints.mobile}px) {
+            font-size: ${({theme}) => theme.font_sizes.tiny};
+        }
+    }
+
+    @media (max-width: ${({theme}) => theme.breakpoints.mobile}px) {
+        width: 100vw !important;
+        gap: 30px;
+    }
 `
 
 interface SalePageProps {
@@ -51,24 +106,26 @@ const SalePage:React.FC<SalePageProps> = ({
 
     return (
         <Main>
-            <SaleCategory categories={sale.categories}/>
+            <DynamicSaleCategory categories={sale.categories}/>
 
             <StyledSalePage>
-                <SaleCard sale={sale}/>
+                <DynamicSaleCard sale={sale} windowWidth={windowWidth}/>
 
-                <Generic font_weight="900" font_size={theme.font_sizes.small} style={{textAlign: "center", width: "100%", display: "block"}}>O preço dos produtos podem variar de acordo com a disponibilidade da loja. As ofertas são por tempo limitado e determinado pelas lojas.</Generic>
+                <Generic font_weight="900" font_size={theme.font_sizes.small} style={{textAlign: "center", width: "100%", display: "block"}} className="Info">O preço dos produtos podem variar de acordo com a disponibilidade da loja. As ofertas são por tempo limitado e determinado pelas lojas.</Generic>
 
-                <SaleDescription description={sale.description}/>
+                <DynamicSaleDescription description={sale.description}/>
 
-                <WishList/>
+                <DynamicWishList/>
+ 
+                <DynamicRelatedProducts />
 
-                <RelatedProducts />
-
-                <Comments sale={sale}/>
+                {windowWidth<=theme.breakpoints.mobile&&windowWidth>0
+                &&<DynamicSubCategory main={sale.categories.main}/>}
+                
+                <DynamicComments sale={sale}/>
             </StyledSalePage>
             
             {windowWidth>theme.breakpoints.tv&&<DynamicAside type="sale"/>}
-        
 
             <DynamicThemeChanger toggleTheme={toggleTheme} hide/>
         </Main>

@@ -5,7 +5,6 @@ const StyledSaleDescription = styled.section`
     max-height: 2000px;
     padding: 16px 24px;
     width: 100%;
-    border-radius: 12px;
     background: ${({theme}) => theme.colors.c1};
     position: relative;
     display: flex;
@@ -26,6 +25,7 @@ const StyledSaleDescription = styled.section`
             :last-of-type {
                 height: 400px;
                 width: 400px;
+                max-width: 90%;
             }
 
             > ul {

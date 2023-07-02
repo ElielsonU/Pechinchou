@@ -9,6 +9,7 @@ const StyledInteractive = styled.section`
     display: flex;
     gap: 10px;
     width: 100%;
+    row-gap: 15px;
     height: 32px;
     font-size: ${({theme}) => theme.font_sizes.small};
     color: ${({theme}) => theme.colors.c6};
@@ -67,12 +68,45 @@ const StyledInteractive = styled.section`
         }
     }
 
+    > .By {
+        height: 32px;
+        display: none;
+        flex-direction: column;
+        flex-wrap: wrap;
+        align-content: start;
+        justify-content: space-between;
+        font-size: ${({theme}) => theme.font_sizes.tiny};
+        column-gap: 5px;
+        width: 100%;
+
+        > .Image {
+            background-color: gray;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+        }  
+
+        @media (max-width: ${({theme}) => theme.breakpoints.tablet}px) {
+            display: flex;
+        }
+    }
+
     @media (max-width: ${({theme}) => theme.breakpoints.tablet}px) {
         flex-wrap: wrap;
         height: auto;
         justify-content: center;
+
+        .TvOnly {
+            display: none;
+        }
     }
 `
+
+type Comment = {
+    id: number,
+    text: string,
+    poster: string
+}
 
 type Sale = {
     id: number,
@@ -91,7 +125,7 @@ type Sale = {
         main: string,
         sub: string
     },
-    comments: []
+    commentsQ: number
 }
 
 interface InteractiveProps {
@@ -111,16 +145,16 @@ const Interactive:React.FC<InteractiveProps> = ({
                 Reportar
             </InteractiveButton>
             
-            <InteractiveButton background_color="#abebab33" color="#3bc14d" font_weight="900">
+            <InteractiveButton background_color="#abebab33" color="#3bc14d" font_weight="900" className="TvOnly">
                 <Image src="https://pechinchou.com.br/_next/static/media/IconWhatsappShare.4304243a.svg" alt="compartilhar" width={24} height={16}/>
                 Compartilhar
             </InteractiveButton>
 
-            <StoreInfo store={sale.store}/>
+            <StoreInfo store={sale.store} className="TvOnly"/>
 
-            <Generic className="Right" as="a" href="#comments">
+            <Generic className="Right" as="a" href="#comments" >
                 <Image src="https://pechinchou.com.br/_next/static/media/IconComment.3f012400.svg" alt="balloon" width={14} height={14} className="Filtered"/>
-                {sale.comments.length}
+                {sale.commentsQ}
             </Generic>
 
             <InteractiveButton as="label" background_color={theme.colors.c3} color="inherit" font_weight="900" className="LikeButton">
@@ -128,6 +162,12 @@ const Interactive:React.FC<InteractiveProps> = ({
                 <div className="Icon"/>
                 Curtir ({sale.likes + likedNow})
             </InteractiveButton>
+
+            <div className="By">
+                <div className="Image"/>
+                <Generic>Elielson</Generic>
+                <Generic>postado {sale.posted}</Generic>
+            </div>
         </StyledInteractive>
     )
 }

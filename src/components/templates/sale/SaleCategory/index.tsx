@@ -1,3 +1,4 @@
+import { Generic } from "@/components/models";
 import styled from "styled-components";
 
 const StyledSaleCategory = styled.span`
@@ -20,7 +21,7 @@ const SaleCategory:React.FC<SaleCategoryProps> = ({
 }) => {
     return (
         <StyledSaleCategory>
-            {categories.main} {">"} {categories.sub}
+            {categories.main} <Generic font_weight="900">{">"} {categories.sub}</Generic>
         </StyledSaleCategory>
     )
 }

@@ -18,7 +18,7 @@ type Sale = {
         main: string,
         sub: string
     },
-    comments: []
+    commentsQ: number
 }
 
 
@@ -33,7 +33,7 @@ const Comments:React.FC<CommentsProps> = ({
         <div id="comments">
             <PostComments sale={sale}/>
             
-            <CommentsSection comments={sale.comments}/>
+            <CommentsSection sale={sale}/>
         </div>
     )
 }

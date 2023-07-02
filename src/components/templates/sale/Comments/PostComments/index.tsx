@@ -1,6 +1,8 @@
 import { Generic } from "@/components/models";
 import Image from "next/image";
+import React, { useState } from "react";
 import styled, { useTheme } from "styled-components";
+import { postComment } from "@/apiConnection";
 
 const StyledPostComments = styled.section`
     background-color: ${({theme}) => theme.colors.c1};
@@ -8,7 +10,6 @@ const StyledPostComments = styled.section`
     position: relative;
     width: 100%;
     display: flex;
-    border-radius: 12px 12px 0px 0px;
     padding: 16px 24px;
     font-family: "DM Sans";
     font-size: 14px;
@@ -142,6 +143,12 @@ const StyledPostComments = styled.section`
     }
 `
 
+type Comment = {
+    id: number,
+    text: string,
+    poster: string
+}
+
 type Sale = {
     id: number,
     name: string,
@@ -159,7 +166,7 @@ type Sale = {
         main: string,
         sub: string
     },
-    comments: []
+    commentsQ: number
 }
 
 interface PostCommentsProps {
@@ -169,21 +176,42 @@ interface PostCommentsProps {
 const PostComments:React.FC<PostCommentsProps> = ({
     sale
 }) => {
+    const [commentText, setCommentText] = useState<string>("")
+    const [newComments, setNewComments] = useState<Array<Comment>>([])
+
     const theme = useTheme()
+
+    const SendComment:React.FormEventHandler = async (event) => {
+        event.preventDefault()
+        const poster = JSON.parse(localStorage.getItem("user")||"{}")?.username
+
+        if (await postComment(commentText, poster, sale.id)) {
+            const id = sale.commentsQ + newComments.length
+            setNewComments([...newComments, {text: commentText, poster, id}])
+            setCommentText("")
+        } 
+        else {
+            alert("comment not posted")
+        }
+    }
+
+    const commentHandler:React.ChangeEventHandler = (event) => {
+        setCommentText((event.target as HTMLInputElement).value)
+    }
 
     return (
         <StyledPostComments>
             <div className="Quantity">
                 <Generic>Comentários</Generic>
-                <Generic>{sale.comments.length}</Generic>
+                <Generic>{sale.commentsQ + newComments.length}</Generic>
             </div>
 
-            <form className="Input" onSubmit={(event) => event.preventDefault()}>
+            <form className="Input" onSubmit={SendComment}>
                 <Image src="https://pechinchou.com.br/assets/icons/DefaultUserImg.svg" alt="user icon" width={32} height={32} className="UserIcon"/>
                 
-                <textarea placeholder="escreva um comentário..."/>
+                <textarea placeholder="escreva um comentário..." onChange={commentHandler} value={commentText}/>
 
-                <button className="Send">
+                <button className="Send" type="submit">
                     <Image src="https://pechinchou.com.br/assets/icons/IconSend.svg" alt="send" width={28} height={28}/>
                 </button>
 

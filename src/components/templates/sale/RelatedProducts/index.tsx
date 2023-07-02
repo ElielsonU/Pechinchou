@@ -12,7 +12,6 @@ const StyledRelatedProducts = styled.section`
     height: 200px;
     padding: 0 15px;
     background: ${({theme}) => theme.colors.c1};
-    border-radius: 12px;
     position: relative;
 
     > .Title {

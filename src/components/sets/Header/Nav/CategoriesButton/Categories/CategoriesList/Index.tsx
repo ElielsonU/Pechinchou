@@ -59,4 +59,4 @@ const CategoriesList:React.FC = () => {
     )
 }
 
-export default CategoriesList
+export default CategoriesList       

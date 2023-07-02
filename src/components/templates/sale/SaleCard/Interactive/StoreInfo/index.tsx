@@ -24,14 +24,16 @@ interface StoreInfoProps {
     store: {
         img: string,
         name: string
-    }
+    },
+    className?: string;
 }
 
 const StoreInfo:React.FC<StoreInfoProps> = ({
-    store
+    store,
+    className
 }) => {
     return (
-        <StyledStoreInfo>
+        <StyledStoreInfo className={className}>
             <Image src={store.img} alt={store.name} width={32} height={32} className="Image"/>
             <Generic>Promoção da loja:</Generic>
             <Generic font_weight="700">{store.name}</Generic>

@@ -4,7 +4,6 @@ import { Header } from '@/components/sets'
 import HomePage from '@/components/templates/home'
 import { useEffect, useState } from 'react'
 import { connectUser } from '@/apiConnection'
-import Footer from '@/components/sets/Footer'
 
 const inter = Inter({ subsets: ['latin'] })
 
