@@ -64,8 +64,10 @@ const InfinityScroll:React.FC<InfinityScrollProps> = ({
         actualYScroll >= offsetHeight&&(async function () {
             setLoading(true)
             const responseSales = await getSales(page)
-            setPage(page + 1)
-            sales.push(...responseSales)
+            if (responseSales[0]) {
+                setPage(page + 1)
+                sales.push(...responseSales)
+            }
             setLoading(false)
         })()
     }, [scrollY])
