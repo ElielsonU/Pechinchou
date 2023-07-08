@@ -58,7 +58,7 @@ const InfinityScroll:React.FC<InfinityScrollProps> = ({
     const [likes, setLikes] = useState([3, 9, 4, 1, 2, 99, 20])
 
     useEffect(() => {
-        const offsetHeight = document.body.offsetHeight - 20
+        const offsetHeight = document.body.offsetHeight - 50
         let actualYScroll = scrollY + window.innerHeight
 
         actualYScroll>=offsetHeight&&(async function () {

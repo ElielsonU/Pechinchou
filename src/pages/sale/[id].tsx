@@ -23,8 +23,6 @@ export const getStaticProps: GetStaticProps = async (context) => {
 
   const id = Number(context.params?.id)
   const sale = await getSale(id)
-
-
   
   return {
     props: {sale},
