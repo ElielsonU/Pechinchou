@@ -2,15 +2,16 @@ import styled, { useTheme } from "styled-components";
 import Image from "next/image";
 import { Generic } from "@/components/models";
 import TypeChanger from "./TypeChanger";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import SignUpForm from "./SignUpForm";
 import LoginForm from "./LoginForm";
 
-interface HiddenProps {
+interface StyledModalFormProps {
     show: boolean;
+    allFocus: boolean;
 }
 
-const StyledModalForm = styled.div<HiddenProps>`
+const StyledModalForm = styled.div<StyledModalFormProps>`
     position: fixed;
     width: 100%;
     height: 100vh;
@@ -20,7 +21,7 @@ const StyledModalForm = styled.div<HiddenProps>`
     display: ${props => props.show?"flex":"none"};
     align-items: center;
     justify-content: center;
-    z-index: 1;
+    z-index: 2;
 
     > .Modal {
         background-color: ${({theme}) => theme.colors.c1};
@@ -32,10 +33,10 @@ const StyledModalForm = styled.div<HiddenProps>`
         flex-direction: column;
         align-items: center;
         justify-content: space-between;
-        height: 600px;
-        max-height: 95%;
-        border-radius: 12px;
-        z-index: 1000;
+        height: ${(props) => props.allFocus?"100vh":"600px"};
+        max-height: 100%;
+        border-radius: ${(props) => props.allFocus?"0":"12px"};
+        z-index: 1002;
         
         > .Title {
             text-align: center;
@@ -70,14 +71,15 @@ const StyledModalForm = styled.div<HiddenProps>`
     > .DarkBackground {
         background-color: ${({theme}) => theme.colors.c5};
         position: fixed;
-        height: 100%;
+        height: calc(100% + 200px);
         width: 100%;
         right: 0;
         top: 0;
     }
 `
 
-interface ModalFormProps extends HiddenProps {
+interface ModalFormProps {
+    show: boolean;
     closeForm: React.MouseEventHandler;
 }
 
@@ -86,11 +88,18 @@ const ModalForm:React.FC<ModalFormProps> = ({
     closeForm
 }) => {
     const theme = useTheme()
+    const [allFocus, setAllFocus] = useState<boolean>(false)
+
+    const changeAllFocus = () => {
+        setAllFocus(!allFocus)
+    }
 
     const [type, setType] = useState("signup")
 
+    useEffect(() => setAllFocus(false), [type])
+
     return (
-        <StyledModalForm show={show}>
+        <StyledModalForm show={show} allFocus={allFocus}>
             <section className="Modal">
                 <Image src="https://pechinchou.com.br/_next/static/media/LogoP.c6bcb3bb.svg" alt="pechinchou" width={34} height={34}/>
                 
@@ -101,7 +110,7 @@ const ModalForm:React.FC<ModalFormProps> = ({
 
                 <TypeChanger changer={setType}/>
                 
-                {type=="signup"?<SignUpForm />:<LoginForm />}
+                {type=="signup"?<SignUpForm changeAllFocus={changeAllFocus} />:<LoginForm />}
 
                 <button className="Cross" onClick={closeForm}/>
             </section>

@@ -1,6 +1,8 @@
 import axios from "axios"
 import { deleteCookie, getCookie, setCookie } from "cookies-next"
 import Router from "next/router"
+import {v4 as uuidv4} from 'uuid'
+
 
 const host = typeof location != "undefined"
     ?`http://${location.host.replace(":3000", ":8000")}`
@@ -52,12 +54,19 @@ const connectUser = async () => {
         const user = res.data[0]
         delete user?.password
 
-        if (user) {
-            localStorage.setItem("user", JSON.stringify(user))
-        } else {
+        if (!user) {
             localStorage.removeItem("user")
+            return null
         }
 
+        const rememberMe = Number(getCookie("remember"))
+        
+        if (!rememberMe) {
+            deleteCookie("token")
+            deleteCookie("remember")           
+        }
+
+        localStorage.setItem("user", JSON.stringify(user))
         return user
     }
 
@@ -66,16 +75,16 @@ const connectUser = async () => {
     }
 }
 
-const login = async (email: string, password: string) => {
+const login = async (email: string, password: string, rememberMe: boolean) => {
     try {
         const res = await axios.get(host+`/user?email=${email.toLocaleLowerCase()}&password=${password}`)
         const user = res.data[0]
         
         delete user.password
-        
         localStorage.setItem("user", JSON.stringify(user))
+        setCookie("remember", Number(rememberMe))
         setCookie("token", user.token)
-    
+
         Router.reload()
     } 
 
@@ -84,9 +93,42 @@ const login = async (email: string, password: string) => {
     }
 }
 
+const testemail = async (email: string) => {
+    try {
+        const res = await axios.get(host+`/user?email=${email}`)
+
+        return res.data.length
+    } 
+
+    catch (e: any) {
+        console.log("Erro: "+ e.message)
+    }
+}
+
+const signup = async (email: string, password: string, username: string) => {
+    try {
+        const data = {
+            username,
+            email,
+            password,
+            token: uuidv4()
+        }
+
+        await axios.post(host+`/user`, data)
+
+        setCookie("token", data.token)
+        Router.reload()
+    } 
+
+    catch (e: any) {
+        alert("Erro: "+ e.message)
+    }
+}
+
 const disconnect = () => {
     deleteCookie("token")
-
+    deleteCookie("remember")
+    localStorage.removeItem("user")
     Router.reload()
 }
 
@@ -112,4 +154,6 @@ export {
     login,
     disconnect,
     postComment,
+    testemail,
+    signup
 }

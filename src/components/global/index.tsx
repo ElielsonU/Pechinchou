@@ -55,6 +55,7 @@ const GlobalStyle = createGlobalStyle<GlobalStyleProps>`
         }
         
         content: "";
+        border-radius: 50%;
         background-color: white;
         box-sizing: content-box;
         border-top: 4px solid ${({theme}) => theme.colors.c2};
@@ -63,9 +64,8 @@ const GlobalStyle = createGlobalStyle<GlobalStyleProps>`
         border-left: 4px solid ${({theme}) => theme.colors.c7};    
         display: inline-block;
         margin: 0 auto;
-        width: 20px;
         height: 20px;
-        border-radius: 50%;
+        width: 20px;
         animation: infinite linear rotate 500ms;
     }
 `

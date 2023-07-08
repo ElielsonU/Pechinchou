@@ -16,13 +16,16 @@ const StyledTypeChanger = styled.div`
         z-index: 1001;
         display: inline-block;
         font-size: ${({theme}) => theme.font_sizes.medium};
-        font-weight: 900;
+        color: ${({theme}) => theme.colors.c6};
+        font-weight: 300;
         transition: opacity 500ms ease;
         cursor: pointer;
-        opacity: 0.7;
+
     }
     
     input:checked + .Type {
+        color: white;
+        font-weight: 900;
         opacity: 1;
     }
 

@@ -69,7 +69,7 @@ const ProfileButton: React.FC<ProfileButtonProps> = ({
     user
 }) => {
     const [profileFocusing, setProfileFocusing] = useState(false)
-    const firstName = user?.username.split(" ")[0].split("-")[0].split(",")[0]
+    const firstName = user?.username?.split(" ")[0].split("-")[0].split(",")[0]
 
     const changeProfileFocus = () => {
         setProfileFocusing(!profileFocusing)

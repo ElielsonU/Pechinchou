@@ -13,6 +13,7 @@ const StyledProfileOptions = styled.section<HiddenProps>`
     padding: 15px;
     background-color: ${({theme}) => theme.colors.c1};
     position: absolute;
+    overflow: hidden;
     top: 53px;
     right: 0;
     z-index: 1;
@@ -84,7 +85,7 @@ const ProfileOptions: React.FC<ProfileOptionsProps> = ({
     user
 }) => {
     const theme = useTheme()
-    const at = user?.username.toLowerCase().replace(" ", "")
+    const at = user?.username?.toLowerCase().replaceAll(" ", "")
 
     return (
         <StyledProfileOptions show={show}>

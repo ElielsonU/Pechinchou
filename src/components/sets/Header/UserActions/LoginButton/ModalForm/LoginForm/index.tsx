@@ -30,6 +30,15 @@ const StyledLoginForm = styled.form`
         font-weight: 300;
         transition: scale 200ms linear;
 
+        :-webkit-autofill,
+        :-webkit-autofill:hover, 
+        :-webkit-autofill:focus, 
+        :-webkit-autofill:active {
+            box-shadow: inset 0 0 20px 20px ${({theme}) => theme.colors.c2} !important;
+            -webkit-text-fill-color: ${({theme}) => theme.colors.c6} !important;
+            caret-color: ${({theme}) => theme.colors.c6};
+        }
+
         :focus {
             scale: 1.01;
             border-color: #db2831;
@@ -45,12 +54,14 @@ const StyledLoginForm = styled.form`
         display: flex;
         justify-content: space-between;
         flex-wrap: wrap;
-        align-items: center;
 
         > button {
             position: absolute;
-            right: 10px;
-            top: 17%;
+            right: 1px;
+            border-radius: 10px;
+            height: 38px;
+            margin-top: 6px;
+            background-color: ${({theme}) => theme.colors.c2};
         }
 
         input[type="checkbox"] {
@@ -90,6 +101,7 @@ const LoginForm:React.FC = () => {
 
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
+    const [rememberMe, setRememberMe] = useState(false)
     const [showPassword, setShowPassword] = useState(false)
 
     const changeEmail = (event: React.ChangeEvent) => {
@@ -100,14 +112,17 @@ const LoginForm:React.FC = () => {
         setPassword((event.target as HTMLInputElement).value)
     }
 
-    const chageShowPassword:React.MouseEventHandler = (event) => {
-        event.preventDefault()
+    const changeShowPassword:React.MouseEventHandler = (event) => {
         setShowPassword(!showPassword)
     }
 
+    const changeRememberMe = () => {
+        setRememberMe(!rememberMe)
+    }    
+
     const submit:React.FormEventHandler = (event) => {
         event.preventDefault()
-        login(email, password)
+        login(email, password, rememberMe)
     }
 
     return (
@@ -122,13 +137,13 @@ const LoginForm:React.FC = () => {
                 <div className="ShowPassword">
                     <input type={showPassword?"text":"password"} placeholder="digite a senha" value={password} onChange={changePassword} required minLength={8}/>
                     <Generic as="label" font_size={theme.font_sizes.small}>
-                        <input type="checkbox"/>
+                        <input type="checkbox" onChange={changeRememberMe} value={Number(rememberMe)} checked={rememberMe}/>
                         Lembre-me
                     </Generic>
                     
                     <PLink href="#" color="#5f7fdb" font_size={theme.font_sizes.small}>Esqueceu sua senha?</PLink>
                     
-                    <button onClick={chageShowPassword} type="button">
+                    <button onClick={changeShowPassword} type="button">
                         <Image 
                         src={showPassword?"https://pechinchou.com.br/_next/static/media/eyeOpen.442183a1.svg":"https://pechinchou.com.br/_next/static/media/eyeClose.e44b1e40.svg"} 
                         alt="show password" width={25} height={25}/>

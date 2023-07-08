@@ -172,7 +172,7 @@ const MenuNav:React.FC<MenuNavProps> = ({
     toggleTheme,
     user
 }) => {
-    const at = user?.username.toLowerCase().replace(" ", "")
+    const at = user?.username?.toLowerCase().replace(" ", "")
 
     return (
         <StyledMenuNav show={show}>

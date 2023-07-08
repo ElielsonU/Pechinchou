@@ -118,7 +118,7 @@ const CommentsSection:React.FC<CommentsSectionProps> = ({ sale }) => {
             ?<>
                 {comments.map((item: any) => <Comment comment={item} key={item.id}/>)}
 
-                {Number((sale.commentsQ/5).toFixed(0))+1 > page 
+                {Number((sale.commentsQ/5)) > page 
                 &&<button className="MoreComments" onClick={nextPage}>
                     Ver mais
                 </button>}

@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import MoreSearched from "./MoreSearched";
 import styled from "styled-components";
+import { useRouter } from "next/router";
 
 interface StyledSearchBarProps {
     typing?: boolean;
@@ -9,7 +10,7 @@ interface StyledSearchBarProps {
 }
 
 const StyledSearchBar = styled.form<StyledSearchBarProps>`
-    padding: 5px 35px 5px 10px;
+    padding: 5px 10px;
     display: flex;
     gap: 8px;
     border-radius: 24px;
@@ -32,9 +33,23 @@ const StyledSearchBar = styled.form<StyledSearchBarProps>`
         color: ${({theme}) => theme.colors.c6};
         padding: 0;
         flex: 1;
+        overflow: visible;
+
         ::placeholder {
             color: ${({theme}) => theme.colors.c6};
             opacity: 0.7;
+        }
+
+        ::-webkit-search-cancel-button {
+            position: absolute;
+            appearance: none;
+            content: " ";
+            width: 15px;
+            height: 15px;
+            background-image: url(https://pechinchou.com.br/_next/static/media/IconCloseRed.6ad10067.svg);
+            background-repeat: no-repeat;
+            background-size: 100%;
+            right: 0px;
         }
     }
 
@@ -55,13 +70,6 @@ const StyledSearchBar = styled.form<StyledSearchBarProps>`
             background-image: url(https://pechinchou.com.br/_next/static/media/SearchMagnifyingWhiteNew.84e76bf5.svg);
             filter: brightness(${({theme}) => theme.filter.brightness});
         }
-
-        :last-of-type {
-            position: absolute;
-            right: 15px;
-            display: ${props => props.typing?"block":"none"};
-            background-image: url(https://pechinchou.com.br/_next/static/media/IconCloseRed.6ad10067.svg);
-        }
     }
 
     @media (max-width: ${({theme}) => theme.breakpoints.tablet}px) {
@@ -81,6 +89,7 @@ const SearchBar:React.FC<SearchBarProps> = ({
 }) => {
     const [search, setSearch] = useState("")
     const [searchBarFocusing, setSearchBarFocusing] = useState(false)
+    const router = useRouter()
 
     const changeSearchBarFocus = () => {
         setSearchBarFocusing(true)
@@ -91,9 +100,16 @@ const SearchBar:React.FC<SearchBarProps> = ({
         setSearch((event.target as HTMLInputElement).value)
     }
 
-    const clearSearch = (event: React.MouseEvent) => {
+    const Search = (event: React.FormEvent) => {
         event.preventDefault()
-        setSearch("")
+        let recentSearch = JSON.parse(localStorage.getItem("recentSearch")||'{"searchs": []}')
+
+        recentSearch.searchs.push(search)
+        
+        recentSearch.searchs.length>3&&recentSearch.searchs.shift()
+        
+        localStorage.setItem("recentSearch", JSON.stringify(recentSearch))
+        router.reload()
     }
 
     useEffect(() => {
@@ -103,14 +119,12 @@ const SearchBar:React.FC<SearchBarProps> = ({
     }, [isFocusing])
 
     return (
-        <StyledSearchBar typing={Boolean(search)} isFocusing={searchBarFocusing} mobile={mobile}>
+        <StyledSearchBar typing={Boolean(search)} isFocusing={searchBarFocusing} mobile={mobile} onSubmit={Search}>
             <button/>
             
-            <input placeholder="Buscar Promoção" value={search} onChange={searchHandler} onFocus={changeSearchBarFocus}/>
-
-            <button onClick={clearSearch}/>
+            <input placeholder="Buscar Promoção" type="search" value={search} onChange={searchHandler} onFocus={changeSearchBarFocus}/>
             
-            <MoreSearched show={searchBarFocusing}/>
+            <MoreSearched show={searchBarFocusing} changeSearchText={setSearch}/>
         </StyledSearchBar>
     )
 }

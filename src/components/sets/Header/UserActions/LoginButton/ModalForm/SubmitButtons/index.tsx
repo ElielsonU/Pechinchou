@@ -32,7 +32,7 @@ const StyledSubmitButtons = styled.div`
 
     .Facebook {
         background-color: #1877f2;
-        color: ${({theme}) => theme.colors.c6};
+        color: white;
 
         ::before {
             content: "";

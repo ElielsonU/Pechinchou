@@ -150,22 +150,28 @@ const StyledPromoCard = styled.section`
     }
 `
 
-interface PromoCardProps {
-    sale: {
-        id:number;
-        name: string;
-        description: string;
-        value: number;
-        sale: number;
-        likes: number;
-        img: string;
-        posted: string;
-        store: {
-            img: string;
-            name: string;
-        },
-        comments: Array<any>;
+type Sale = {
+    id: number,
+    name: string,
+    description: string,
+    value: number,
+    sale: number,
+    likes: number,
+    posted: string,
+    store: {
+      img: string,
+      name: string
     },
+    img: string,
+    categories: {
+        main: string,
+        sub: string
+    },
+    commentsQ: number
+}
+
+interface PromoCardProps {
+    sale: Sale;
     alreadyLiked?: number;
 }
 

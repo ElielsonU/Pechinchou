@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { useState, useEffect } from "react";
+import GoTop from "./GoTop";
 import PromoCard from "./PromoCard";
 import ScrollLoader from "./ScrollLoader";
 import { getSales } from "@/apiConnection";
@@ -21,50 +22,49 @@ const StyledInfinityScroll = styled.div`
     }
 `
 
+
+
 interface InfinityScrollProps {
     scrollY: number;
+}
+
+
+type Sale = {
+    id: number,
+    name: string,
+    description: string,
+    value: number,
+    sale: number,
+    likes: number,
+    posted: string,
+    store: {
+      img: string,
+      name: string
+    },
+    img: string,
+    categories: {
+        main: string,
+        sub: string
+    },
+    commentsQ: number
 }
 
 const InfinityScroll:React.FC<InfinityScrollProps> = ({
     scrollY
 }) => {
-    const [sales, setSales] = useState([{
-        id: 0,
-        name: "",
-        description: "",
-        value: 0,
-        sale: 0,
-        likes: 0,
-        img: "",
-        posted: "",
-        store: {
-            img: "",
-            name: ""
-        },
-        comments: []
-    }])
-    
+    const [sales, setSales] = useState<Array<Sale>>([])
     const [page, setPage] = useState(1)
     const [loading, setLoading] = useState(true)
     const [likes, setLikes] = useState([3, 9, 4, 1, 2, 99, 20])
 
     useEffect(() => {
-        (async function () {
-            const responseSales = await getSales(page)
-            setSales(responseSales)
-            setPage(page + 1)
-            setLoading(false)
-        })()
-    }, [])
+        const offsetHeight = document.body.offsetHeight - 20
+        let actualYScroll = scrollY + window.innerHeight
 
-    useEffect(() => {
-        const offsetHeight = document.body.offsetHeight - 50
-        const actualYScroll = scrollY + window.innerHeight
-
-        actualYScroll >= offsetHeight&&(async function () {
+        actualYScroll>=offsetHeight&&(async function () {
             setLoading(true)
             const responseSales = await getSales(page)
-            if (responseSales[0]) {
+            if (responseSales.length) {
                 setPage(page + 1)
                 sales.push(...responseSales)
             }
@@ -84,6 +84,7 @@ const InfinityScroll:React.FC<InfinityScrollProps> = ({
                 }
             })}
             {loading&&<ScrollLoader />}
+            {scrollY>1000&&<GoTop href="#"/>}
         </StyledInfinityScroll>
     )
 }
