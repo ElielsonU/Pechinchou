@@ -8,7 +8,7 @@ const nextConfig = {
     domains: [
       "pechinchou.com.br"
     ]
-  }
+  },
 }
 
 module.exports = nextConfig

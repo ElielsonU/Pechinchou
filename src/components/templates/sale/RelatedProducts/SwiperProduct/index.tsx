@@ -6,6 +6,7 @@ const StyledSwiperProduct = styled.section`
     height: 140px;
     display: flex;
     overflow-y: hidden;
+    scrollbar-width: none;
     
     ::-webkit-scrollbar {
         display: none;

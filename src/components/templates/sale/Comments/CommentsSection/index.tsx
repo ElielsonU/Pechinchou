@@ -4,6 +4,7 @@ import Comment from "./Comment";
 import styled, { useTheme } from "styled-components";
 import { getComments } from "@/apiConnection";
 import { useEffect, useState } from "react";
+import notepad from '../../../../../../public/icons/global/notepad.svg'
 
 const StyledCommentsSection = styled.section`
     background-color: ${({theme}) => theme.colors.c1};
@@ -101,7 +102,7 @@ const CommentsSection:React.FC<CommentsSectionProps> = ({ sale }) => {
     useEffect(() => {
         (async () => { 
             if (previewPage != page) {
-                const get = await getComments(sale.id, page)
+                const get = (await getComments(sale.id, page))||[]
                 setComments([...comments, ...get])
                 setPreviewPage(page)
             }
@@ -124,7 +125,7 @@ const CommentsSection:React.FC<CommentsSectionProps> = ({ sale }) => {
                 </button>}
             </>
             :<div className="NoComments">
-                <Image src="https://pechinchou.com.br/_next/static/media/NotHaveComment.4adecc25.svg" alt="note" width={45} height={45}/>
+                <Image src={notepad} alt="note" width={45} height={45}/>
                 <Generic as="strong" font_size={theme.font_sizes.medium} font_weight="900">Ainda não há comentários</Generic>
                 <Generic>Seja o primeiro a comentar</Generic>
             </div>}

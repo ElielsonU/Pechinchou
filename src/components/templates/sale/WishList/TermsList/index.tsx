@@ -8,6 +8,7 @@ const StyledTermsList = styled.section`
     height: 32px;
     overflow-y: hidden;
     grid-auto-flow: column;
+    scrollbar-width: none;
 
     ::-webkit-scrollbar {
         display: none;

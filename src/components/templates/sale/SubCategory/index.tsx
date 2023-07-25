@@ -14,6 +14,8 @@ const StyledSubCategory = styled.section`
     .Slider {
         width: 100%;
         overflow-y: hidden;
+        scrollbar-width: none;
+
 
         > div {
             display: flex;
